@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundTint="@color/blue_color">
+
+    <include layout="@layout/header_activity" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/light_gray"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#E3DBDB"
+            android:orientation="horizontal">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="#C8BBBB">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image1"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center_horizontal|top|center_vertical"
+                            android:background="@drawable/oval"
+                            android:backgroundTint="@color/green_color"
+                            android:clickable="true"
+                            android:contentDescription="@string/app_name"
+                            android:scrollbarAlwaysDrawHorizontalTrack="false"
+                            android:scrollbarAlwaysDrawVerticalTrack="false"
+                            android:scrollbars="vertical"
+                            app:fabSize="auto"
+                            app:srcCompat="@drawable/round_person_24" />
+
+                        <TextView
+                            android:id="@+id/textView45"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal|center_vertical"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="Nguyen Duc Linh"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:clickable="true"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image2"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center_horizontal|top|center_vertical"
+                            android:background="@drawable/oval"
+                            android:backgroundTint="@color/purple_500"
+                            android:clickable="true"
+                            android:contentDescription="@string/app_name"
+                            android:scrollbarAlwaysDrawHorizontalTrack="false"
+                            android:scrollbarAlwaysDrawVerticalTrack="false"
+                            android:scrollbars="vertical"
+                            app:fabSize="auto"
+                            app:srcCompat="@drawable/round_person_24" />
+
+                        <TextView
+                            android:id="@+id/textView46"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal|center_vertical"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="Nguyen Duc Linh"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image3"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center_horizontal|top|center_vertical"
+                            android:background="@drawable/oval"
+                            android:backgroundTint="@color/yellow_color"
+                            android:clickable="true"
+                            android:contentDescription="@string/app_name"
+                            android:scrollbarAlwaysDrawHorizontalTrack="false"
+                            android:scrollbarAlwaysDrawVerticalTrack="false"
+                            android:scrollbars="vertical"
+                            app:fabSize="auto"
+                            app:srcCompat="@drawable/round_person_24" />
+
+                        <TextView
+                            android:id="@+id/textView47"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal|center_vertical"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="Nguyen Duc Linh"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image4"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center_horizontal|top|center_vertical"
+                            android:background="@drawable/oval"
+                            android:backgroundTint="@color/green_color"
+                            android:clickable="true"
+                            android:contentDescription="@string/app_name"
+                            android:scrollbarAlwaysDrawHorizontalTrack="false"
+                            android:scrollbarAlwaysDrawVerticalTrack="false"
+                            android:scrollbars="vertical"
+                            app:fabSize="auto"
+                            app:srcCompat="@drawable/round_person_24" />
+
+                        <TextView
+                            android:id="@+id/textView48"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal|center_vertical"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="Nguyen Duc Linh"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addMemberButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginRight="5dp"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                app:backgroundTint="@color/white"
+                app:srcCompat="@android:drawable/ic_input_add" />
+        </LinearLayout>
+
+        <TableRow
+            android:id="@+id/second_row"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_weight="1"
+            android:background="@color/light_gray">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingRight="10dp">
+
+                    <Button
+                        android:id="@+id/prescriptionButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:backgroundTintMode="src_over"
+                        android:drawableTop="@drawable/baseline_event_note_24"
+                        android:drawableTint="@color/main_green"
+                        android:forceHasOverlappingRendering="false"
+                        android:text="Prescription"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/statisticButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:drawableTop="@drawable/baseline_pie_chart_24"
+                        android:drawableTint="@color/main_green"
+                        android:text="Statistic"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp">
+
+                    <Button
+                        android:id="@+id/scheduleButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:drawableTop="@drawable/baseline_calendar_month_24"
+                        android:drawableTint="@color/main_green"
+                        android:text="Schedule"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/healthButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:drawableTop="@drawable/baseline_book_24"
+                        android:drawableTint="@color/main_green"
+                        android:text="Health"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/third_row"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@color/light_gray">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/main_green"
+                    android:gravity="center"
+                    android:text="Prescription of day"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView50"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="3dp"
+                            android:background="@color/white"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textView51"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="3dp"
+                            android:background="@color/white"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textView52"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="3dp"
+                            android:background="@color/white"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textView53"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="3dp"
+                            android:background="@color/white"
+                            android:text="TextView" />
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+        </TableRow>
+
+    </LinearLayout>
+
+    <include layout="@layout/footer_activity" />
+
+</RelativeLayout>

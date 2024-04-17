@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Medication</string>
+    <string name="good_health">Your state of health is quite stable!</string>
+
+    <!--    <string name="good_health">Your state of health is quite stable!</string>-->
+    <!--    <string name="good_health">Your state of health is quite stable!</string>-->
+    <!--    <string name="good_health">Your state of health is quite stable!</string>-->
+</resources>
