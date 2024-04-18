@@ -12,7 +12,6 @@ import com.example.medication.activity.base.MainActivity;
 import com.example.medication.data.NotificationSetting;
 import com.example.medication.service.NotificationSettingService;
 import com.example.medication.service.ServiceGenerator;
-import com.example.medication.util.TransferActivity;
 
 import java.util.HashMap;
 import java.util.Map;
