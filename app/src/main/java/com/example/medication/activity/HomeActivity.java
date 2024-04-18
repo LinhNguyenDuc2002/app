@@ -1,11 +1,16 @@
 package com.example.medication.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
@@ -97,41 +102,50 @@ public class HomeActivity extends MainActivity {
     }
 
     private void showMedication(List<PrescribedMedDto> data) {
-        LinearLayout.LayoutParams linearLayout = new LinearLayout.LayoutParams(
+        TableRow.LayoutParams linearLayout = new TableRow.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                50
+                150
         );
-        linearLayout.setMargins(0, 0, 0, 3);
+        linearLayout.setMargins(0, 0, 0, 10);
 
-        LinearLayout.LayoutParams textViewLayout = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
+        TableRow.LayoutParams textViewLayout = new TableRow.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                2
         );
-        textViewLayout.weight = 1.0f;
 
         for(PrescribedMedDto item : data) {
             TableRow tableRow = new TableRow(listMedicationLayout.getContext());
             tableRow.setLayoutParams(linearLayout);
+            tableRow.setBackground(new ColorDrawable(getResources().getColor(R.color.white)));
 
             TextView textViewName = new TextView(tableRow.getContext());
-            textViewName.setBackgroundColor(getResources().getColor(R.color.white));
-            textViewName.setLayoutParams(textViewLayout);
+            textViewName.setLayoutParams(new TableRow.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    5
+            ));
             textViewName.setText(item.getName());
+            textViewName.setTextSize(18);
+            textViewName.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+            textViewName.setPadding(5, 0, 0, 0);
 
             TextView textViewQuantity = new TextView(tableRow.getContext());
-            textViewQuantity.setBackgroundColor(getResources().getColor(R.color.white));
             textViewQuantity.setLayoutParams(textViewLayout);
             textViewQuantity.setText(item.getQuantity() + " " + item.getUnit());
+            textViewQuantity.setTextSize(18);
+            textViewQuantity.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
 
             TextView textViewDate = new TextView(tableRow.getContext());
-            textViewDate.setBackgroundColor(getResources().getColor(R.color.white));
             textViewDate.setLayoutParams(textViewLayout);
             textViewDate.setText(item.getTime());
+            textViewDate.setTextSize(14);
+            textViewDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
 
+            listMedicationLayout.addView(tableRow);
             tableRow.addView(textViewName);
             tableRow.addView(textViewQuantity);
             tableRow.addView(textViewDate);
-            listMedicationLayout.addView(tableRow);
         }
     }
 }
