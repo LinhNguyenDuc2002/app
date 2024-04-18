@@ -1,37 +1,20 @@
-package com.example.medication.data;
+package com.example.medication.data.DTO;
 
 import java.util.Date;
 
-public class PatientEntity {
-
+public class PatientDto {
     private Integer id;
-
     private String sId;
-
     private String fullName;
-
     private Date dateOfBirth;
-
     private String phoneNumber;
 
-    private String avatar;
-    private UserEntity userEntity;
-
-    public PatientEntity() {
-    }
-
-    public PatientEntity(Integer id) {
-        this.id = id;
-    }
-
-    public PatientEntity(Integer id, String sId, String fullName, Date dateOfBirth, String phoneNumber, String avatar, UserEntity userEntity) {
+    public PatientDto(Integer id, String sId, String fullName, Date dateOfBirth, String phoneNumber) {
         this.id = id;
         this.sId = sId;
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.userEntity = userEntity;
     }
 
     public Integer getId() {
@@ -72,21 +55,5 @@ public class PatientEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
     }
 }
