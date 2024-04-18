@@ -58,7 +58,5 @@ public class HomeActivity extends MainActivity {
             TransferActivity.transferActivity(this, HealthAssessmentActivity.class);
         else if (id == R.id.addMemberButton)
             TransferActivity.transferActivity(this, AddMemberActivity.class);
-        else if(id == R.id.prescriptionButton)
-            TransferActivity.transferActivity(this, PrescriptionActivity.class);
     }
 }
