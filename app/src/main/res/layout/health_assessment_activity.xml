@@ -36,6 +36,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:text="Chọn câu trả lời phù hợp với bạn:"
+            android:textColor="@color/black"
             android:textSize="18dp" />
 
         <ScrollView
@@ -65,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:orientation="horizontal">
 

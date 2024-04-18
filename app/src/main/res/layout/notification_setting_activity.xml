@@ -22,14 +22,14 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="Set up notifications"
-            android:textColor="@color/blue_color"
-            android:textSize="25dp"
+            android:text="Notification settings"
+            android:textColor="@color/main_green"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="68dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
@@ -42,9 +42,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|left|center_vertical"
+                android:layout_marginRight="100dp"
                 android:layout_weight="1"
                 android:text="Turn on"
-                android:textSize="16dp" />
+                android:textSize="18dp" />
 
             <Switch
                 android:id="@+id/chip"
@@ -54,6 +55,14 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/white" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
@@ -62,17 +71,15 @@
             android:layout_marginBottom="5dp"
             android:gravity="center"
             android:text="Customize notifications"
-            android:textColor="@color/blue_color"
-            android:textSize="25dp"
+            android:textColor="@color/main_green"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -81,8 +88,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginRight="100dp"
                 android:layout_weight="1"
-                android:text="Advance notice" />
+                android:text="Advance notice"
+                android:textSize="18dp" />
 
             <EditText
                 android:id="@+id/editTextTime"
@@ -96,41 +105,42 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/checkBox3"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginRight="50dp"
                 android:layout_weight="1"
-                android:text="Notify via email" />
+                android:backgroundTint="@color/main_green"
+                android:text="Save"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/checkBox4"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/defaultButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
-                android:text="Notify via app" />
+                android:backgroundTint="@color/main_green"
+                android:text="Default"
+                android:textSize="18dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button2"
+        <TextView
+            android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="100dp"
-            android:backgroundTint="@color/blue_color"
-            android:text="Save"
+            android:layout_margin="20dp"
+            android:lineSpacingExtra="8sp"
+            android:text="* Notice that the medication time notification will be changed immediately after you click &quot;Save&quot; button"
+            android:textColor="@color/main_green"
             android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
     </LinearLayout>
 

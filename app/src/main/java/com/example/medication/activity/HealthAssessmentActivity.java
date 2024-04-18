@@ -12,8 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.Space;
 import android.widget.TextView;
 
-import androidx.annotation.IdRes;
-
 import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
 import com.example.medication.data.AssessmentResult;
@@ -21,7 +19,7 @@ import com.example.medication.data.Question;
 import com.example.medication.data.request.AnswerForm;
 import com.example.medication.service.AssessmentService;
 import com.example.medication.service.ServiceGenerator;
-import com.example.medication.util.QuestionUtil;
+import com.example.medication.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,10 +42,10 @@ public class HealthAssessmentActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadListQuestion();
         setContentView(R.layout.health_assessment_activity);
 
         constructor();
+        loadListQuestion();
     }
 
     @Override
@@ -143,8 +141,10 @@ public class HealthAssessmentActivity extends MainActivity {
     }
 
     private void showResult(AssessmentResult assessmentResult) {
-        bmiResult.setText("Result from BMI: " + assessmentResult.getBmiStatus());
-        finalResult.setText("Final result: " + assessmentResult.getHealthStatus());
+        bmiResult.setText("Result from BMI: " + StringUtil.transferToMessage(assessmentResult.getBmiStatus()));
+        finalResult.setText("Final result: " +
+                StringUtil.transferToMessage(assessmentResult.getHealthStatus()) +
+                " (" + assessmentResult.getScore() + "/100" + ")" );
     }
 
     private void showData(List<Question> questions) {
@@ -178,7 +178,7 @@ public class HealthAssessmentActivity extends MainActivity {
             questionLayout.setLayoutParams(linearLayout);
 
             TextView textView = new TextView(questionLayout.getContext());
-            textView.setText(QuestionUtil.markQuestion(i, question.getContent()));
+            textView.setText(StringUtil.markQuestionNumber(i, question.getContent()));
             textView.setTextSize(18);
 
             questionLayout.addView(textView);
