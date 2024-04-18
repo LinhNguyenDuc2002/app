@@ -11,7 +11,6 @@ import com.example.medication.activity.base.MainActivity;
 import com.example.medication.data.NotificationSetting;
 import com.example.medication.service.NotificationSettingService;
 import com.example.medication.service.ServiceGenerator;
-import com.example.medication.util.DateUtil;
 
 import java.time.LocalTime;
 
@@ -24,27 +23,30 @@ public class NotificationSettingActivity extends MainActivity {
 
     private Button saveButton;
     private Button defaultButton;
-    private Switch turnChip;
+    private Switch chip;
     private EditText editTextTime;
+
+    public NotificationSettingActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadStatus();
         setContentView(R.layout.notification_setting_activity);
 
         constructor();
+        loadStatus();
     }
 
     @Override
     public void constructor() {
         super.constructor();
 
-        turnChip.findViewById(R.id.turnChip);
-        editTextTime.findViewById(R.id.editTextTime);
+        chip = findViewById(R.id.chip);
+        editTextTime = findViewById(R.id.editTextTime);
 
-        saveButton.findViewById(R.id.saveButton);
-        defaultButton.findViewById(R.id.defaultButton);
+        saveButton = findViewById(R.id.saveButton);
+        defaultButton = findViewById(R.id.defaultButton);
 
         saveButton.setOnClickListener(this);
         defaultButton.setOnClickListener(this);
@@ -72,13 +74,13 @@ public class NotificationSettingActivity extends MainActivity {
 
     private void showData(NotificationSetting notificationSetting) {
         if(notificationSetting.getStatus()) {
-            turnChip.getCompoundPaddingRight();
-            editTextTime.setText(DateUtil.transferToString(notificationSetting.getPreNoti()));
+            chip.setChecked(true);
+            editTextTime.setText(notificationSetting.getPreNoti());
         }
         else {
-            turnChip.getCompoundPaddingLeft();
+            chip.setChecked(false);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                editTextTime.setText(DateUtil.transferToString(LocalTime.of(0, 0)));
+                editTextTime.setText("00:00");
             }
             editTextTime.setEnabled(false);
         }

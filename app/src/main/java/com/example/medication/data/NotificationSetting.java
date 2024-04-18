@@ -1,6 +1,6 @@
 package com.example.medication.data;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalTime;
 
 public class NotificationSetting {
@@ -10,7 +10,7 @@ public class NotificationSetting {
 
     private Boolean status;
 
-    private LocalTime preNoti;
+    private String preNoti;
 
     private Integer method;
 
@@ -26,7 +26,7 @@ public class NotificationSetting {
         return status;
     }
 
-    public LocalTime getPreNoti() {
+    public String getPreNoti() {
         return preNoti;
     }
 

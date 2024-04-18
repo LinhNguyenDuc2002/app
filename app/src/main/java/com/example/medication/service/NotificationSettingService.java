@@ -1,9 +1,6 @@
 package com.example.medication.service;
 
 import com.example.medication.data.NotificationSetting;
-import com.example.medication.data.Question;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
