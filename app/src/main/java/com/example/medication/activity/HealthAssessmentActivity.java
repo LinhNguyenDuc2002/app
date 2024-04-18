@@ -128,6 +128,7 @@ public class HealthAssessmentActivity extends MainActivity {
             public void onResponse(Call<AssessmentResult> call, Response<AssessmentResult> response) {
                 if (response.isSuccessful()) {
                     AssessmentResult data = response.body();
+                    showResult(data);
                 } else {
                     System.out.println("error");
                 }
