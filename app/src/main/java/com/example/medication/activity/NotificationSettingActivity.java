@@ -1,7 +1,7 @@
 package com.example.medication.activity;
 
-import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -12,8 +12,10 @@ import com.example.medication.activity.base.MainActivity;
 import com.example.medication.data.NotificationSetting;
 import com.example.medication.service.NotificationSettingService;
 import com.example.medication.service.ServiceGenerator;
+import com.example.medication.util.TransferActivity;
 
-import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,9 +28,6 @@ public class NotificationSettingActivity extends MainActivity implements Compoun
     private Button defaultButton;
     private Switch chip;
     private EditText editTextTime;
-
-    public NotificationSettingActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +50,18 @@ public class NotificationSettingActivity extends MainActivity implements Compoun
 
         saveButton.setOnClickListener(this);
         defaultButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+
+        int id = v.getId();
+
+        if (id == R.id.saveButton)
+            updateSetting(packData());
+        else if(id == R.id.defaultButton)
+            updateSetting(new HashMap<>());
     }
 
     @Override
@@ -81,6 +92,39 @@ public class NotificationSettingActivity extends MainActivity implements Compoun
                 System.err.println("Đã xảy ra lỗi: " + t.getMessage());
             }
         });
+    }
+
+    private void updateSetting(Map<String, Object> parameters) {
+        notificationSettingService.updateSetting(2, parameters).enqueue(new Callback<NotificationSetting>() {
+            @Override
+            public void onResponse(Call<NotificationSetting> call, Response<NotificationSetting> response) {
+                if (response.isSuccessful()) {
+                    NotificationSetting data = response.body();
+                    showData(data);
+                } else {
+                    System.out.println("error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NotificationSetting> call, Throwable t) {
+                t.printStackTrace();
+                System.err.println("Đã xảy ra lỗi: " + t.getMessage());
+            }
+        });
+    }
+
+    private Map<String, Object> packData() {
+        Map<String, Object> map = new HashMap<>();
+
+        boolean check = chip.isChecked();
+        map.put("status", check);
+
+        if(check) {
+            map.put("previous", editTextTime.getText());
+        }
+
+        return map;
     }
 
     private void showData(NotificationSetting notificationSetting) {
