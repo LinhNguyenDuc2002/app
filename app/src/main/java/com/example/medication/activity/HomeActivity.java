@@ -124,7 +124,7 @@ public class HomeActivity extends MainActivity {
             TextView textViewDate = new TextView(tableRow.getContext());
             textViewDate.setBackgroundColor(getResources().getColor(R.color.white));
             textViewDate.setLayoutParams(textViewLayout);
-            textViewDate.setText(item.getTime().toString());
+            textViewDate.setText(item.getTime());
 
             tableRow.addView(textViewName);
             tableRow.addView(textViewQuantity);
