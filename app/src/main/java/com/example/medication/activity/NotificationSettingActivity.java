@@ -3,6 +3,7 @@ package com.example.medication.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -18,7 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NotificationSettingActivity extends MainActivity {
+public class NotificationSettingActivity extends MainActivity implements CompoundButton.OnCheckedChangeListener {
     private final NotificationSettingService notificationSettingService = ServiceGenerator.createService(NotificationSettingService.class);
 
     private Button saveButton;
@@ -52,6 +53,16 @@ public class NotificationSettingActivity extends MainActivity {
         defaultButton.setOnClickListener(this);
     }
 
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            editTextTime.setEnabled(true);
+        } else {
+            editTextTime.setText("00:00");
+            editTextTime.setEnabled(true);
+        }
+    }
+
     private void loadStatus() {
         notificationSettingService.getSettingStatus(2).enqueue(new Callback<NotificationSetting>() {
             @Override
@@ -79,9 +90,7 @@ public class NotificationSettingActivity extends MainActivity {
         }
         else {
             chip.setChecked(false);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                editTextTime.setText("00:00");
-            }
+            editTextTime.setText("00:00");
             editTextTime.setEnabled(false);
         }
     }
