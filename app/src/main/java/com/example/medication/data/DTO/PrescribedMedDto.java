@@ -4,9 +4,9 @@ public class PrescribedMedDto {
     private Integer id;
     private String time;
     private String name;
-    private Integer Quantity;
+    private Integer quantity;
     private String unit;
-    private String Note;
+    private String note;
     private Integer status;
 
     public Integer getId() {
@@ -22,7 +22,7 @@ public class PrescribedMedDto {
     }
 
     public Integer getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public String getUnit() {
@@ -30,7 +30,7 @@ public class PrescribedMedDto {
     }
 
     public String getNote() {
-        return Note;
+        return note;
     }
 
     public Integer getStatus() {
