@@ -225,7 +225,7 @@
                         android:forceHasOverlappingRendering="false"
                         android:text="Prescription"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="17dp"
                         android:textStyle="bold" />
 
                     <Button
@@ -239,7 +239,7 @@
                         android:drawableTint="@color/main_green"
                         android:text="Statistic"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="17dp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -261,7 +261,7 @@
                         android:drawableTint="@color/main_green"
                         android:text="Schedule"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="17dp"
                         android:textStyle="bold" />
 
                     <Button
@@ -275,7 +275,7 @@
                         android:drawableTint="@color/main_green"
                         android:text="Health"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="17dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -317,64 +317,6 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-<!--                        <TableRow-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="50dp"-->
-<!--                            android:layout_marginBottom="3dp">-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textView50"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:background="@color/white"-->
-<!--                                android:text="TextView" />-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textView51"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:background="@color/white"-->
-<!--                                android:text="TextView" />-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textView52"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:background="@color/white"-->
-<!--                                android:text="TextView" />-->
-<!--                        </TableRow>-->
-
-<!--                        <TableRow-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="50dp">-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textView53"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:background="@color/white"-->
-<!--                                android:text="TextView" />-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textView54"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:background="@color/white"-->
-<!--                                android:text="TextView" />-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textView55"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:background="@color/white"-->
-<!--                                android:text="TextView" />-->
-<!--                        </TableRow>-->
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
