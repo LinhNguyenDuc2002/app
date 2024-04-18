@@ -15,4 +15,6 @@
     <color name="chosen_blue_color">#5CC6F6</color>
     <color name="main_green">#03A688</color>
     <color name="light_gray">#E3DBDB</color>
+    <color name="cot">#bfbfbf</color>
+    <color name="info">#E5E5E5</color>#E5E5E5
 </resources>
