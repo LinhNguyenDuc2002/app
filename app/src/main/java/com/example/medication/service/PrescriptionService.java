@@ -12,7 +12,7 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface PrescriptionService {
-    @GET("/{patientId}/allPrescription")
+    @GET("/prescription/{patientId}/allPrescription")
     public Call<List<PrescriptionDto>> getAllPrescriptions(@Path("patientId") Integer patientId);
 
     @GET("/prescription/patient/{id}")
