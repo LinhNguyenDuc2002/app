@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -37,7 +38,6 @@ public class PrescriptionActivity extends MainActivity {
     private final PrescriptionService prescriptionService = ServiceGenerator.createService(PrescriptionService.class);
     private TextView patientName, patientDob, patientPhone;
     private LinearLayout prescriptionListLayout;
-//    private Button prescriptionItemLayout;
     private String formatDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         return sdf.format(date);
@@ -61,7 +61,6 @@ public class PrescriptionActivity extends MainActivity {
         patientDob = findViewById(R.id.text_dob);
         patientPhone = findViewById(R.id.text_phone);
         prescriptionListLayout = findViewById(R.id.prescription_list);
-//        prescriptionItemLayout = findViewById(R.id.prescription_item);
     }
     private void loadInforPatient(int patientId) {
         patientService.findById(patientId).enqueue(new Callback<PatientDto>() {
@@ -145,9 +144,19 @@ public class PrescriptionActivity extends MainActivity {
         if (prescription.getStatus().equals(0)){
             prescriptionNameTextView.setTextColor(getResources().getColor(R.color.red_color));
         }
-//        prescriptionView.
-        // Add inflated layout to prescriptionListLayout
         prescriptionListLayout.addView(prescriptionView);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<PrescriptionDto>> call, Throwable t) {
+                        System.out.println("error");
+                    }
+                }
+        );
+    }
+
+    private void showListPrescription(List<PrescriptionDto> data) {
+        Log.d("data size", String.valueOf(data.size()));
     }
 
 }
