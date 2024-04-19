@@ -180,7 +180,7 @@ public class StatisticActivity extends MainActivity implements OnChartValueSelec
     }
 
     private void showStatistic(Statistic data) {
-        if(data == null) {
+        if(data == null || (data.getForget() == 00 && data.getLate() == 0 && data.getOnTime() == 0)) {
             chart.setVisibility(View.GONE);
             emptyChartText.setVisibility(View.VISIBLE);
         }

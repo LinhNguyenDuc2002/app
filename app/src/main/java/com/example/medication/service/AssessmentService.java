@@ -5,6 +5,7 @@ import com.example.medication.data.Question;
 import com.example.medication.data.request.AnswerForm;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -18,4 +19,7 @@ public interface AssessmentService {
 
     @POST("/assessment/{id}")
     Call<AssessmentResult> postAnswer(@Path("id") Integer id, @Body AnswerForm answerForm);
+
+    @GET("/assessment/{id}")
+    Call<Map<Integer, Integer>> getHealthStatistic(@Path("id") Integer id);
 }

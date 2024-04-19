@@ -225,7 +225,7 @@
                         android:forceHasOverlappingRendering="false"
                         android:text="Prescription"
                         android:textColor="@color/black"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
 
                     <Button
@@ -239,7 +239,7 @@
                         android:drawableTint="@color/main_green"
                         android:text="Statistic"
                         android:textColor="@color/black"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -261,7 +261,7 @@
                         android:drawableTint="@color/main_green"
                         android:text="Schedule"
                         android:textColor="@color/black"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
 
                     <Button
@@ -275,7 +275,7 @@
                         android:drawableTint="@color/main_green"
                         android:text="Health"
                         android:textColor="@color/black"
-                        android:textSize="17dp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -309,7 +309,8 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/right_angle">
 
                     <LinearLayout
                         android:id="@+id/listMedicationLayout"
