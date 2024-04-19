@@ -1,20 +1,10 @@
 package com.example.medication.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.renderscript.Element;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.util.Log;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
 
 import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
@@ -38,6 +28,7 @@ public class PrescriptionActivity extends MainActivity {
     private final PrescriptionService prescriptionService = ServiceGenerator.createService(PrescriptionService.class);
     private TextView patientName, patientDob, patientPhone;
     private LinearLayout prescriptionListLayout;
+
     private String formatDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         return sdf.format(date);
@@ -53,8 +44,6 @@ public class PrescriptionActivity extends MainActivity {
         loadAllPrescriptions(1);
     }
 
-
-
     public void constructor() {
         super.constructor();
         patientName = findViewById(R.id.text_name);
@@ -62,6 +51,7 @@ public class PrescriptionActivity extends MainActivity {
         patientPhone = findViewById(R.id.text_phone);
         prescriptionListLayout = findViewById(R.id.prescription_list);
     }
+
     private void loadInforPatient(int patientId) {
         patientService.findById(patientId).enqueue(new Callback<PatientDto>() {
             @Override
@@ -83,20 +73,20 @@ public class PrescriptionActivity extends MainActivity {
     }
 
     private void showInforPatient(PatientDto data) {
-        patientName.setText("Họ và tên: "+data.getFullName());
-        patientDob.setText("Ngày sinh: "+formatDate(data.getDateOfBirth()));
-        patientPhone.setText("SĐT: "+ data.getPhoneNumber());
+        patientName.setText("Họ và tên: " + data.getFullName());
+        patientDob.setText("Ngày sinh: " + formatDate(data.getDateOfBirth()));
+        patientPhone.setText("SĐT: " + data.getPhoneNumber());
     }
+
     private void loadAllPrescriptions(Integer patientId) {
         prescriptionService.getAllPrescriptions(patientId).enqueue(
                 new Callback<List<PrescriptionDto>>() {
                     @Override
                     public void onResponse(Call<List<PrescriptionDto>> call, Response<List<PrescriptionDto>> response) {
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             List<PrescriptionDto> data = response.body();
                             showListPrescription(data);
-                        }
-                        else{
+                        } else {
                             System.out.println("error list");
                         }
                     }
@@ -108,12 +98,14 @@ public class PrescriptionActivity extends MainActivity {
                 }
         );
     }
+
     private void showListPrescription(List<PrescriptionDto> data) {
         // Lặp qua danh sách đơn thuốc và hiển thị thông tin của từng đơn thuốc
         for (PrescriptionDto prescription : data) {
             addPrescriptionView(prescription);
         }
     }
+
     private void addPrescriptionView(PrescriptionDto prescription) {
         // Inflate layout for prescription item
         View prescriptionView = getLayoutInflater().inflate(R.layout.prescription_item, null);
@@ -135,28 +127,15 @@ public class PrescriptionActivity extends MainActivity {
                 Intent intent = new Intent(PrescriptionActivity.this, PrescriptionDetailActivity.class);
                 // You can also pass data to the next activity if needed
                 intent.putExtra("prescription_id", prescription.getId());
-                intent.putExtra("prescription_patient",prescription.getPatientName());
-                intent.putExtra("prescription_doctor",prescription.getDoctorName());
-                intent.putExtra("prescription_status",prescription.getStatus());
+                intent.putExtra("prescription_patient", prescription.getPatientName());
+                intent.putExtra("prescription_doctor", prescription.getDoctorName());
+                intent.putExtra("prescription_status", prescription.getStatus());
                 startActivity(intent);
             }
         });
-        if (prescription.getStatus().equals(0)){
+        if (prescription.getStatus().equals(0)) {
             prescriptionNameTextView.setTextColor(getResources().getColor(R.color.red_color));
         }
         prescriptionListLayout.addView(prescriptionView);
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<PrescriptionDto>> call, Throwable t) {
-                        System.out.println("error");
-                    }
-                }
-        );
     }
-
-    private void showListPrescription(List<PrescriptionDto> data) {
-        Log.d("data size", String.valueOf(data.size()));
-    }
-
 }
