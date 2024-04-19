@@ -21,6 +21,7 @@ import com.example.medication.data.request.AnswerForm;
 import com.example.medication.service.AssessmentService;
 import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.StringUtil;
+import com.example.medication.util.TransferActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +36,7 @@ public class HealthAssessmentActivity extends MainActivity {
 
     private LinearLayout listQuestionLayout;
     private Button resultButton;
+    private Button healthStatisticButton;
     private TextView bmiResult;
     private TextView finalResult;
 
@@ -59,10 +61,12 @@ public class HealthAssessmentActivity extends MainActivity {
         listQuestionLayout = findViewById(R.id.listQuestionLayout);
 
         resultButton = findViewById(R.id.resultButton);
+        healthStatisticButton =findViewById(R.id.healthStatisticButton);
         bmiResult = findViewById(R.id.bmiResult);
         finalResult = findViewById(R.id.finalResult);
 
         resultButton.setOnClickListener(this);
+        healthStatisticButton.setOnClickListener(this);
     }
 
     @Override
@@ -73,6 +77,8 @@ public class HealthAssessmentActivity extends MainActivity {
 
         if (id == R.id.resultButton)
             postAnswerForm();
+        else if(id == R.id.healthStatisticButton)
+            TransferActivity.transferActivity(this, HealthStatisticActivity.class);
     }
 
     private void loadListQuestion() {
@@ -148,7 +154,6 @@ public class HealthAssessmentActivity extends MainActivity {
                 " (" + assessmentResult.getScore() + "/100" + ")" );
     }
 
-    @SuppressLint("ResourceType")
     private void showData(List<Question> questions) {
         int i = 1;
         LinearLayout.LayoutParams linearLayout = new LinearLayout.LayoutParams(
@@ -181,6 +186,7 @@ public class HealthAssessmentActivity extends MainActivity {
 
             TextView textView = new TextView(questionLayout.getContext());
             textView.setText(StringUtil.markQuestionNumber(i, question.getContent()));
+            textView.setLineSpacing(8, 1);
             textView.setTextSize(18);
 
             questionLayout.addView(textView);
@@ -237,6 +243,7 @@ public class HealthAssessmentActivity extends MainActivity {
                             RadioButton radioButton = new RadioButton(radioGroup.getContext());
                             radioButton.setText(answer.getContent());
                             radioButton.setTextSize(18);
+                            radioButton.setLineSpacing(8, 1);
                             radioButton.setId(answer.getId());
 
                             radioGroup.addView(radioButton);
