@@ -1,6 +1,6 @@
 package com.example.medication.data.DTO;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class PrescriptionDto {
     private Integer id;
@@ -8,16 +8,26 @@ public class PrescriptionDto {
     private Date createdAt;
     private String doctorName;
     private String patientName;
+    private Integer status;
 
-    public PrescriptionDto(Integer id, String disease, Date createdAt, String doctorName, String patientName) {
+    public PrescriptionDto(Integer id, String disease, Date createdAt, String doctorName, String patientName, Integer status) {
         this.id = id;
         this.disease = disease;
         this.createdAt = createdAt;
         this.doctorName = doctorName;
         this.patientName = patientName;
+        this.status = status;
     }
 
     public PrescriptionDto() {
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getId() {

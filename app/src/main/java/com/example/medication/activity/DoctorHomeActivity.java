@@ -2,15 +2,11 @@ package com.example.medication.activity;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.medication.R;
+import com.example.medication.activity.base.MainActivity;
 
-public class DoctorHomeActivity extends AppCompatActivity {
+public class DoctorHomeActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

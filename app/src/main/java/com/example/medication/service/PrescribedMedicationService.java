@@ -11,4 +11,7 @@ import retrofit2.http.Path;
 public interface PrescribedMedicationService {
     @GET("/prescriptionMed/findDaylyMedication/{id}")
     Call<List<PrescribedMedDto>> getDailyMedication(@Path("id") Integer id);
+
+    @GET("/prescriptionMed/findAll/{prescriptionId}")
+    Call<List<PrescribedMedDto>> findAllPrescribedMedByPrecriptionId(@Path("prescriptionId") Integer prescriptionId);
 }
