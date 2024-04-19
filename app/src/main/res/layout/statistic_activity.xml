@@ -124,6 +124,14 @@
                 android:layout_height="260dp"
                 android:layout_weight="1" />
 
+            <TextView
+                android:id="@+id/emptyChartText"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:text="No data"
+                android:gravity="center"
+                android:visibility="gone"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -143,8 +151,7 @@
                         android:layout_width="100dp"
                         android:layout_height="20dp"
                         android:layout_marginRight="20dp"
-                        android:foreground="@drawable/rounded_corner"
-                        android:foregroundTint="@color/green_color"
+                        android:foreground="@color/green_color"
                         app:srcCompat="@color/white" />
 
                     <TextView
@@ -170,8 +177,7 @@
                         android:layout_width="100dp"
                         android:layout_height="20dp"
                         android:layout_marginRight="20dp"
-                        android:foreground="@drawable/rounded_corner"
-                        android:foregroundTint="@color/yellow_color"
+                        android:foreground="@color/yellow_color"
                         app:srcCompat="@color/white" />
 
                     <TextView
@@ -195,8 +201,7 @@
                         android:layout_width="100dp"
                         android:layout_height="20dp"
                         android:layout_marginRight="20dp"
-                        android:foreground="@drawable/rounded_corner"
-                        android:foregroundTint="@color/red_color"
+                        android:foreground="@color/red_color"
                         app:srcCompat="@color/white" />
 
                     <TextView
