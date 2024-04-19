@@ -12,6 +12,7 @@ import com.example.medication.activity.base.MainActivity;
 import com.example.medication.data.NotificationSetting;
 import com.example.medication.service.NotificationSettingService;
 import com.example.medication.service.ServiceGenerator;
+import com.example.medication.util.DialogUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class NotificationSettingActivity extends MainActivity implements Compoun
 
         chip = findViewById(R.id.chip);
         editTextTime = findViewById(R.id.editTextTime);
+        editTextTime.setOnClickListener(this);
 
         saveButton = findViewById(R.id.saveButton);
         defaultButton = findViewById(R.id.defaultButton);
@@ -61,6 +63,8 @@ public class NotificationSettingActivity extends MainActivity implements Compoun
             updateSetting(packData());
         else if(id == R.id.defaultButton)
             updateSetting(new HashMap<>());
+        else if (id == R.id.editTextTime)
+            DialogUtil.showTimePickerDialog(this, editTextTime);
     }
 
     @Override
@@ -134,7 +138,6 @@ public class NotificationSettingActivity extends MainActivity implements Compoun
         else {
             chip.setChecked(false);
             editTextTime.setText("00:00");
-            editTextTime.setEnabled(false);
         }
     }
 }
