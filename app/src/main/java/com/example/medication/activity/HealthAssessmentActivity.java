@@ -1,5 +1,6 @@
 package com.example.medication.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
@@ -147,6 +148,7 @@ public class HealthAssessmentActivity extends MainActivity {
                 " (" + assessmentResult.getScore() + "/100" + ")" );
     }
 
+    @SuppressLint("ResourceType")
     private void showData(List<Question> questions) {
         int i = 1;
         LinearLayout.LayoutParams linearLayout = new LinearLayout.LayoutParams(

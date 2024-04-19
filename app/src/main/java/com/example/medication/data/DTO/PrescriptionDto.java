@@ -1,6 +1,6 @@
 package com.example.medication.data.DTO;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class PrescriptionDto {
     private Integer id;
