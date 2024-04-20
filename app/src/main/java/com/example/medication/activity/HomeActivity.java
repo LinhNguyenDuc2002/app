@@ -19,6 +19,7 @@ import com.example.medication.service.PrescribedMedicationService;
 import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.TransferActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import static com.example.medication.vinhquang.util.FirebaseUtil.*;
 
 import java.util.List;
 
@@ -44,6 +45,9 @@ public class HomeActivity extends MainActivity {
 
         constructor();
         loadMedication();
+        getToken();
+        setTokenToUser();
+        getListOldNoti();
     }
 
     @Override
