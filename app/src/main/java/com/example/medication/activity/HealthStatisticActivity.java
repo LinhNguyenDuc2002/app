@@ -17,6 +17,7 @@ import com.example.medication.activity.base.MainActivity;
 import com.example.medication.data.AssessmentResult;
 import com.example.medication.service.AssessmentService;
 import com.example.medication.service.ServiceGenerator;
+import com.example.medication.util.DateUtil;
 import com.example.medication.util.DialogUtil;
 import com.example.medication.util.StringUtil;
 import com.github.mikephil.charting.charts.LineChart;
@@ -169,37 +170,38 @@ public class HealthStatisticActivity extends MainActivity  {
         TableRow.LayoutParams textViewLayout = new TableRow.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                2
+                3
         );
 
-        for(AssessmentResult item : data) {
+        for(int i = data.size()-1; i>=0; i--) {
+            AssessmentResult item = data.get(i);
             TableRow tableRow = new TableRow(listHistory.getContext());
             tableRow.setLayoutParams(linearLayout);
             if(item.getHealthStatus().equals("GOOD_STATE")) {
-                tableRow.setBackground(new ColorDrawable(getResources().getColor(R.color.green_color)));
+                tableRow.setBackground(new ColorDrawable(getResources().getColor(R.color.cadmium_green_color)));
             }
             else if(item.getHealthStatus().equals("MEDIUM_STATE")) {
-                tableRow.setBackground(new ColorDrawable(getResources().getColor(R.color.yellow_color)));
+                tableRow.setBackground(new ColorDrawable(getResources().getColor(R.color.orange_color)));
             }
             else {
-                tableRow.setBackground(new ColorDrawable(getResources().getColor(R.color.red_color)));
+                tableRow.setBackground(new ColorDrawable(getResources().getColor(R.color.dark_red_color)));
             }
 
             TextView textViewDate = new TextView(tableRow.getContext());
-            textViewDate.setLayoutParams(new TableRow.LayoutParams(
-                    0,
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    5
-            ));
-            textViewDate.setText(item.getDate().toString());
+            textViewDate.setLayoutParams(textViewLayout);
+            textViewDate.setText(DateUtil.utilDateToString(item.getDate()));
             textViewDate.setTextSize(18);
             textViewDate.setTextColor(Color.WHITE);
             textViewDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
             textViewDate.setPadding(5, 0, 0, 0);
 
             TextView textViewScore = new TextView(tableRow.getContext());
-            textViewScore.setLayoutParams(textViewLayout);
-            textViewScore.setText(item.getScore());
+            textViewScore.setLayoutParams(new TableRow.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    2
+            ));
+            textViewScore.setText(item.getScore().toString() + "/100");
             textViewScore.setTextSize(18);
             textViewScore.setTextColor(Color.WHITE);
             textViewScore.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
