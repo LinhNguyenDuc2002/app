@@ -44,7 +44,7 @@
 
                 <TextView
                     android:id="@+id/textView16"
-                    android:layout_width="50dp"
+                    android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="~"
@@ -63,7 +63,7 @@
                     android:inputType="date" />
 
                 <Space
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0" />
 

@@ -15,13 +15,14 @@
         android:background="@color/light_gray"
         android:orientation="vertical">
 
+
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_margin="20dp">
-
-        </com.github.mikephil.charting.charts.LineChart>
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp" />
 
         <TextView
             android:id="@+id/textView17"
@@ -30,16 +31,146 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:gravity="center"
-            android:text="Kết quả đánh giá gần nhất"
-            android:textSize="18dp" />
+            android:text="Xu hướng kết quả đánh giá gần nhất"
+            android:textSize="15dp"
+            android:textStyle="bold|italic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/right_angle"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/fromDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:hint="From"
+                    android:inputType="date" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="~"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/toDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:hint="To"
+                    android:inputType="date" />
+
+                <Space
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <Button
+                    android:id="@+id/healthOkButton"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:backgroundTint="@color/main_green"
+                    android:text="OK"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/right_angle"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:id="@+id/listHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+<!--                    <TableRow-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:background="@color/white">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView51"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="TextView" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView52"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="TextView" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView53"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="TextView" />-->
+<!--                    </TableRow>-->
+
+<!--                    <TableRow-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:background="@color/white">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView54"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="TextView" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView55"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="TextView" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/textView56"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="TextView" />-->
+<!--                    </TableRow>-->
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/emptyChartText"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:text="No data"
+            android:layout_height="250dp"
             android:gravity="center"
-            android:visibility="gone"/>
+            android:text="No data"
+            android:visibility="gone" />
 
     </LinearLayout>
 
