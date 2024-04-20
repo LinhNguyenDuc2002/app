@@ -10,4 +10,10 @@ public final class TransferActivity extends AppCompatActivity {
         Intent intent = new Intent(context, activity);
         context.startActivity(intent);
     }
+
+    public static void transferActivityWithId(Context context, Class<?> activity, Integer id) {
+        Intent intent = new Intent(context, activity);
+        intent.putExtra("id", id);
+        context.startActivity(intent);
+    }
 }
