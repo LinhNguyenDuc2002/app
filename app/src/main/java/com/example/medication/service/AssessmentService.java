@@ -12,6 +12,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 public interface AssessmentService {
     @GET("/assessment/questions")
@@ -22,4 +23,7 @@ public interface AssessmentService {
 
     @GET("/assessment/{id}")
     Call<Map<Integer, Integer>> getHealthStatistic(@Path("id") Integer id);
+
+    @GET("/assessment/{id}/history")
+    Call<List<AssessmentResult>> getHealthHistory(@Path("id") Integer id, @QueryMap Map<String, String> parameters);
 }

@@ -9,6 +9,7 @@ import android.widget.TimePicker;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public final class DialogUtil {
     public static void showDatePickerDialog(Context context, EditText editText) {
@@ -21,7 +22,7 @@ public final class DialogUtil {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        String selectedDate = String.format(Locale.US, "%02d/%02d/%04d", dayOfMonth, month + 1, year);
                         editText.setText(selectedDate);
                     }
                 }, year, month, dayOfMonth);

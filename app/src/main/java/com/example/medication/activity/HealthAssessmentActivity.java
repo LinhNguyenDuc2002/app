@@ -1,6 +1,5 @@
 package com.example.medication.activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
