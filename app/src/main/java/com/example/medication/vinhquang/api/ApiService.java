@@ -4,6 +4,7 @@ import com.example.medication.data.DrinkingNotification;
 import com.example.medication.vinhquang.data.AppointmentNotiResponse;
 import com.example.medication.vinhquang.data.AppointmentRequest;
 import com.example.medication.vinhquang.data.AppointmentResponse;
+import com.example.medication.vinhquang.data.MedicationResponse;
 import com.example.medication.vinhquang.data.NotificationResponse;
 import com.example.medication.vinhquang.data.SearchResponse;
 
@@ -44,4 +45,13 @@ public interface ApiService {
     Call<List<AppointmentResponse> >getAllApps(@Path("id") Integer id, @Query("role") Integer role);
     @GET("/appointment/{id}")
     Call<AppointmentResponse> getOneApp(@Path("id") Integer id);
+
+    @GET("/medication/search")
+    Call<List<SearchResponse>> searchMed(@Query("name") String name);
+
+    @GET("/medication/{id}")
+    Call<MedicationResponse> getOneMed(@Path("id") Integer id);
+
+    @GET("/medication/interactions/{id}")
+    Call<List<SearchResponse>> getAllInteraction(@Path("id") Integer id);
 }

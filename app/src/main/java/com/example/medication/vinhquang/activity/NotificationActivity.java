@@ -3,7 +3,9 @@ package com.example.medication.vinhquang.activity;
 import static com.example.medication.util.TransferActivity.transferActivityWithId;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;

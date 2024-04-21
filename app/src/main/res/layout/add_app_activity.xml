@@ -44,6 +44,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_margin="10dp"
+            android:paddingRight="20dp"
             >
             <LinearLayout
                 android:layout_width="50dp"
@@ -83,6 +84,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_margin="10dp"
+            android:paddingRight="20dp"
             >
             <LinearLayout
                 android:layout_width="50dp"
@@ -122,6 +124,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_margin="10dp"
+            android:paddingRight="20dp"
             >
             <LinearLayout
                 android:layout_width="50dp"
@@ -161,6 +164,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_margin="10dp"
+            android:paddingRight="20dp"
             >
             <LinearLayout
                 android:layout_width="50dp"
@@ -200,6 +204,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_margin="10dp"
+            android:paddingRight="20dp"
             >
             <LinearLayout
                 android:layout_width="50dp"
