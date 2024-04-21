@@ -20,4 +20,5 @@
     <color name="light_gray">#E3DBDB</color>
     <color name="cot">#bfbfbf</color>
     <color name="info">#E5E5E5</color>#E5E5E5
+    <color name="transparent">#00FFFFFF</color>
 </resources>
