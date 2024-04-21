@@ -113,7 +113,7 @@ public class StatisticActivity extends MainActivity implements OnChartValueSelec
             Intent intent = new Intent(this, DetailStatisticActivity.class);
             intent.putExtra("start", startDate.getText().toString());
             intent.putExtra("end", endDate.getText().toString());
-            intent.putExtra("prescription", prescriptionSpinner.getSelectedItemPosition());
+            intent.putExtra("prescription", prescription.get(prescriptionSpinner.getSelectedItem().toString()));
             startActivity(intent);
         }
         else if(id == R.id.okButton) {
