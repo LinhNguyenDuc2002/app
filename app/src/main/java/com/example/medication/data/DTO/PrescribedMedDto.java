@@ -9,6 +9,34 @@ public class PrescribedMedDto {
     private String note;
     private Integer status;
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public Integer getId() {
         return id;
     }

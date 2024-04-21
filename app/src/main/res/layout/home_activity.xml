@@ -193,7 +193,7 @@
         <TableRow
             android:id="@+id/second_row"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="212dp"
             android:layout_weight="1"
             android:background="@color/light_gray">
 
