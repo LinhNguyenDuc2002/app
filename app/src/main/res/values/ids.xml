@@ -2,4 +2,6 @@
 <resources>
     <item name="id" type="id"/>
     <item name="status" type="id"/>
+    <item name="name" type="id"/>
+    <item name="des" type="id"/>
 </resources>
