@@ -17,6 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".vinhquang.activity.InteractionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".vinhquang.activity.SearchMedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".vinhquang.activity.MedicationActivity"
+            android:exported="false" />
+        <activity
             android:name=".vinhquang.activity.DetailAppActivity"
             android:exported="false" />
         <activity
