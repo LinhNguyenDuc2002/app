@@ -9,12 +9,16 @@
     <color name="white">#FFFFFF</color>
     <color name="blue_color">#0BBFFF</color>
     <color name="green_color">#008000</color>
+    <color name="cadmium_green_color">#005C29</color>
     <color name="yellow_color">#FFFF00</color>
+    <color name="orange_color">#FFA500</color>
     <color name="red_color">#FF0000</color>
+    <color name="dark_red_color">#8B0000</color>
     <color name="light_blue_color">#A4DEF8</color>
     <color name="chosen_blue_color">#5CC6F6</color>
     <color name="main_green">#03A688</color>
     <color name="light_gray">#E3DBDB</color>
     <color name="cot">#bfbfbf</color>
     <color name="info">#E5E5E5</color>#E5E5E5
+    <color name="transparent">#00FFFFFF</color>
 </resources>
