@@ -46,6 +46,7 @@ public class FirebaseUtil {
 
     public static void setTokenToUser() {
         globalValues.setUserId(1);
+        globalValues.setRole(0);
         api.setToken(globalValues.getUserId(), globalValues.getToken()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
