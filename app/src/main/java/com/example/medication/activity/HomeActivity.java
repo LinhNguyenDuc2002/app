@@ -1,10 +1,13 @@
 package com.example.medication.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -16,6 +19,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
+import com.example.medication.data.DTO.DailyStatusDto;
 import com.example.medication.data.DTO.PrescribedMedDto;
 import com.example.medication.service.DailyStatusService;
 import com.example.medication.service.PrescribedMedicationService;
@@ -137,6 +141,59 @@ public class HomeActivity extends MainActivity {
             textViewName.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
             textViewName.setPadding(5, 0, 0, 0);
 
+            textViewName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Tạo một mảng chuỗi chứa các lựa chọn cho spinner
+                    String[] options = {"Thuốc đã hết", "Chỉnh giờ uống"};
+
+                    // Tạo một ArrayAdapter để hiển thị danh sách các lựa chọn trong AlertDialog
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(HomeActivity.this, android.R.layout.simple_list_item_1, options);
+
+                    // Tạo AlertDialog và hiển thị danh sách lựa chọn
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                    builder.setTitle("Chọn một lựa chọn")
+                            .setAdapter(adapter, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Xử lý khi một lựa chọn được chọn
+                                    String selectedOption = options[which];
+                                    // Kiểm tra nếu người dùng chọn "Thuốc đã hết"
+                                    if (selectedOption.equals("Thuốc đã hết")) {
+                                        prescribedMedicationService.updatePrescribedMedEndById(item.getId()).enqueue(new Callback<Void>() {
+                                            @Override
+                                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                                System.out.println("Thuốc "+item.getName()+" đã hết");
+                                                recreate();
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<Void> call, Throwable t) {
+
+                                            }
+                                        });
+                                    } else {
+                                        // Thực hiện hành động cho lựa chọn khác
+                                        // Ví dụ: Hiển thị thông báo khác
+                                        // Toast.makeText(HomeActivity.this, "Lựa chọn: " + selectedOption, Toast.LENGTH_SHORT).show();
+                                    }
+                                    // Đóng AlertDialog
+                                    dialog.dismiss();
+                                }
+                            })
+                            .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Đóng AlertDialog nếu người dùng chọn hủy
+                                    dialog.dismiss();
+                                }
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            });
+
+
             TextView textViewQuantity = new TextView(tableRow.getContext());
             textViewQuantity.setLayoutParams(textViewLayout);
             textViewQuantity.setText(item.getQuantity() + " " + item.getUnit());
@@ -154,6 +211,26 @@ public class HomeActivity extends MainActivity {
                     TableRow.LayoutParams.WRAP_CONTENT,
                     TableRow.LayoutParams.WRAP_CONTENT
             ));
+
+            dailyStatusService.getDailyStatus(item.getTime(),1,item.getId()).enqueue(new Callback<DailyStatusDto>() {
+                @Override
+                public void onResponse(Call<DailyStatusDto> call, Response<DailyStatusDto> response) {
+                    DailyStatusDto dto = response.body();
+                    if (dto != null){
+                        checkBox.setChecked(true); // Không kiểm tra checkbox
+                        textViewName.setTextColor(getResources().getColor(R.color.red_color));
+                    }
+                    else {
+                        checkBox.setChecked(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DailyStatusDto> call, Throwable t) {
+                    t.printStackTrace();
+                }
+            });
+
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

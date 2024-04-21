@@ -98,4 +98,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.medication.service;
 
+import com.example.medication.data.DTO.DailyStatusDto;
 import com.example.medication.data.DTO.PrescribedMedDto;
 
 import retrofit2.Call;
@@ -18,4 +19,8 @@ public interface DailyStatusService {
             @Path("patientId") Integer patientId,
             @Path("status") Integer status
     );
+
+    @GET("dailyStatus/getDailyStatus/{time}/{patientId}/{prescribedMedId}")
+    Call<DailyStatusDto> getDailyStatus(@Path("time") String time,@Path("patientId") Integer patientId,@Path("prescribedMedId") Integer prescribedMedId);
+
 }
