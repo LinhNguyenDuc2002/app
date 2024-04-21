@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
 import com.example.medication.data.DTO.PrescribedMedDto;
+import com.example.medication.service.DailyStatusService;
 import com.example.medication.service.PrescribedMedicationService;
 import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.TransferActivity;
@@ -28,7 +31,7 @@ import retrofit2.Response;
 
 public class HomeActivity extends MainActivity {
     private final PrescribedMedicationService prescribedMedicationService = ServiceGenerator.createService(PrescribedMedicationService.class);
-
+    private final DailyStatusService dailyStatusService = ServiceGenerator.createService(DailyStatusService.class);
     private LinearLayout listMedicationLayout;
 
     private Button statisticButton;
@@ -142,10 +145,46 @@ public class HomeActivity extends MainActivity {
             textViewDate.setTextSize(14);
             textViewDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
 
+            CheckBox checkBox = new CheckBox(tableRow.getContext());
+            checkBox.setLayoutParams(new TableRow.LayoutParams(
+                    TableRow.LayoutParams.WRAP_CONTENT,
+                    TableRow.LayoutParams.WRAP_CONTENT
+            ));
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    // Xử lý sự kiện khi checkbox được chọn
+                    if (isChecked) {
+                        System.out.println(item.getId());
+                        dailyStatusService.updateDailyStatus(item, 1, 1).enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                System.out.println("ok");
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                System.out.println("not ok");
+                            }
+                        });
+                        // Đổi màu của textViewName thành đỏ khi checkbox được chọn
+                        textViewName.setTextColor(getResources().getColor(R.color.red_color));
+                    } else {
+                        dailyStatusService.updateDailyStatus(item, 1, 0);
+                        // Đổi màu của textViewName về màu mặc định hoặc một màu khác khi checkbox không được chọn
+                        textViewName.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }
+            });
+
+
             listMedicationLayout.addView(tableRow);
             tableRow.addView(textViewName);
             tableRow.addView(textViewQuantity);
             tableRow.addView(textViewDate);
+            tableRow.addView(checkBox);
         }
     }
+
+
 }
