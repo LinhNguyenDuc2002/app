@@ -7,6 +7,6 @@ public final class StringUtil {
 
     public static String transferToMessage(String message) {
         String result = message.replaceAll("_", " ");
-        return result.toLowerCase();
+        return result.substring(0, 1).toUpperCase() + result.substring(1);
     }
 }

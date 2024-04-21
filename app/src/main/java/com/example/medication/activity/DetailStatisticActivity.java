@@ -103,7 +103,7 @@ public class DetailStatisticActivity extends MainActivity {
 
         TableRow.LayoutParams linearLayout = new TableRow.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                100
+                120
         );
         linearLayout.setMargins(0, 0, 0, 10);
 
@@ -119,7 +119,7 @@ public class DetailStatisticActivity extends MainActivity {
             detail.setLayoutParams(layout);
 
             TextView textViewPrescription = new TextView(detail.getContext());
-            textViewPrescription.setLayoutParams(new TableRow.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
+            textViewPrescription.setLayoutParams(new TableRow.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 140));
             textViewPrescription.setText(item.getDisease() + "-" + item.getId().toString());
             textViewPrescription.setTextSize(18);
             textViewPrescription.setTypeface(null, Typeface.BOLD);
@@ -127,6 +127,7 @@ public class DetailStatisticActivity extends MainActivity {
             textViewPrescription.setGravity(Gravity.CENTER_VERTICAL);
             textViewPrescription.setPadding(5, 0, 0, 0);
 
+            detail.addView(textViewPrescription);
             for(DailyResponse dailyResponse : item.getDailyResponses()) {
                 TableRow tableRow = new TableRow(detail.getContext());
                 tableRow.setLayoutParams(linearLayout);
@@ -166,7 +167,6 @@ public class DetailStatisticActivity extends MainActivity {
                 textViewDate.setTextColor(Color.WHITE);
                 textViewDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
 
-                detail.addView(textViewPrescription);
                 detail.addView(tableRow);
                 tableRow.addView(textViewName);
                 tableRow.addView(textViewQuantity);
