@@ -8,6 +8,15 @@
     tools:context=".vinhquang.activity.AppNotiActivity">
 
     <include layout="@layout/header_activity" />
+    <LinearLayout
+        android:id="@+id/noti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical">
+
+    </LinearLayout>
 
     <include layout="@layout/footer_activity" />
 
