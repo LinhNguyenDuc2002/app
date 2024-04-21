@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.medication.R;
+import com.example.medication.activity.DetailNotificationActivity;
 import com.example.medication.activity.base.MainActivity;
 import com.example.medication.vinhquang.data.NotificationFirebase;
 import com.example.medication.vinhquang.util.GlobalValues;
@@ -128,7 +129,7 @@ public class NotificationActivity extends MainActivity {
                 int idValue = (int) v.getTag(R.id.id);
                 System.out.println("xxxxxxxxxxxx: " + idValue);
                 if(n.getType() == 0) {
-//                    transferActivityWithId(NotificationActivity.this, MedNotiActivity.class, idValue);
+                    transferActivityWithId(NotificationActivity.this, DetailNotificationActivity.class, idValue);
                 } else if(n.getType() == 1) {
                     transferActivityWithId(NotificationActivity.this, AppNotiActivity.class, idValue);
                 } else if(n.getType() == 2) {
