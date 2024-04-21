@@ -1,5 +1,6 @@
 package com.example.medication.vinhquang.api;
 
+import com.example.medication.data.DrinkingNotification;
 import com.example.medication.vinhquang.data.AppointmentNotiResponse;
 import com.example.medication.vinhquang.data.NotificationResponse;
 
@@ -19,6 +20,9 @@ public interface ApiService {
     Call<List<NotificationResponse>> getListOldNoti(@Path("id") Integer id);
     @GET("notification/{id}")
     Call<AppointmentNotiResponse> getAppointmentNoti(@Path("id") Integer id);
+
+    @GET("notification/{id}/medicine")
+    Call<DrinkingNotification> getDrinkingNoti(@Path("id") Integer id);
 
     @PUT("notification/{id}")
     Call<String> update(@Path("id") Integer id);
