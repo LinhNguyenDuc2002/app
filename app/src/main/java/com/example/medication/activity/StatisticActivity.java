@@ -1,5 +1,6 @@
 package com.example.medication.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -108,8 +109,13 @@ public class StatisticActivity extends MainActivity implements OnChartValueSelec
 
         int id = v.getId();
 
-        if (id == R.id.showDetailButton)
-            TransferActivity.transferActivity(this, DetailStatisticActivity.class);
+        if (id == R.id.showDetailButton) {
+            Intent intent = new Intent(this, DetailStatisticActivity.class);
+            intent.putExtra("start", startDate.getText().toString());
+            intent.putExtra("end", endDate.getText().toString());
+            intent.putExtra("prescription", prescriptionSpinner.getSelectedItemPosition());
+            startActivity(intent);
+        }
         else if(id == R.id.okButton) {
             try {
                 loadPrescription();
