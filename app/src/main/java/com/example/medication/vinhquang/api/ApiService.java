@@ -4,7 +4,9 @@ import com.example.medication.data.DrinkingNotification;
 import com.example.medication.vinhquang.data.AppointmentNotiResponse;
 import com.example.medication.vinhquang.data.AppointmentRequest;
 import com.example.medication.vinhquang.data.AppointmentResponse;
+import com.example.medication.vinhquang.data.DialogResponse;
 import com.example.medication.vinhquang.data.MedicationResponse;
+import com.example.medication.vinhquang.data.MessageRequest;
 import com.example.medication.vinhquang.data.NotificationResponse;
 import com.example.medication.vinhquang.data.SearchResponse;
 
@@ -54,4 +56,15 @@ public interface ApiService {
 
     @GET("/medication/interactions/{id}")
     Call<List<SearchResponse>> getAllInteraction(@Path("id") Integer id);
+
+    @GET("/chat/dialog/all/{id}")
+    Call<List<DialogResponse>> getAllDialog(@Path("id") Integer id, @Query("role") Integer role) ;
+
+    @GET("/chat/dialog/{id}")
+    Call<DialogResponse> getOneDialog(@Path("id") Integer id);
+
+    @POST("/chat/send")
+    Call<String> sendMessage(@Body MessageRequest messageRequest);
+    @GET("/chat/dialog/{fId}/{sId}")
+    Call<Integer> createOrGetDialog(@Path("fId") Integer fId, @Path("sId") Integer sId, @Query("role") Integer role);
 }

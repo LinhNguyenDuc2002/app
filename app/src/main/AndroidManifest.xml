@@ -17,6 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".vinhquang.activity.SearchDialogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".vinhquang.activity.DialogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".vinhquang.activity.ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".vinhquang.activity.InteractionActivity"
             android:exported="false" />
         <activity

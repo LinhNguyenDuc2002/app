@@ -1,5 +1,8 @@
 package com.example.medication.activity;
 
+import static com.example.medication.util.TransferActivity.transferActivity;
+import static com.example.medication.util.TransferActivity.transferActivityWithId;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +12,7 @@ import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
 import com.example.medication.data.DrinkingNotification;
 import com.example.medication.service.ServiceGenerator;
+import com.example.medication.vinhquang.activity.NotificationActivity;
 import com.example.medication.vinhquang.api.ApiService;
 import com.example.medication.vinhquang.data.NotificationFirebase;
 import com.example.medication.vinhquang.util.GlobalValues;
@@ -66,7 +70,7 @@ public class DetailNotificationActivity extends MainActivity {
         int id = v.getId();
 
         if (id == R.id.backNoti)
-            finish();
+            transferActivity(DetailNotificationActivity.this, NotificationActivity.class);
     }
 
     private void loadData() {

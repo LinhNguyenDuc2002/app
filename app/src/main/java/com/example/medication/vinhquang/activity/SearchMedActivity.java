@@ -2,10 +2,12 @@ package com.example.medication.vinhquang.activity;
 
 import static com.example.medication.util.TransferActivity.transferActivityWithId;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -64,6 +66,16 @@ public class SearchMedActivity extends MainActivity {
         });
     }
 
+    public void resetEditText() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
+
+        search.setVisibility(View.GONE);
+
+        search.setVisibility(View.VISIBLE);
+        search.setText("");
+    }
+
     public void searchMed() {
         api.searchMed(search.getText().toString()).enqueue(new Callback<List<SearchResponse>>() {
             @Override
@@ -76,6 +88,8 @@ public class SearchMedActivity extends MainActivity {
                         System.out.println(d.getName());
                         render(d);
                     });
+
+                    resetEditText();
                 } else {
                     System.out.println("error");
                 }
