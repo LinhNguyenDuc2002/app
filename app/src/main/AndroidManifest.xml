@@ -94,6 +94,12 @@
         <activity
             android:name=".activity.SyncPrescriptionActivity"
             android:exported="true" />
+        <activity
+            android:name=".activity.NewMedication"
+            android:exported="true" />
+        <activity
+            android:name=".activity.UpdateTimeMedication"
+            android:exported="true" />
     </application>
 
 </manifest>

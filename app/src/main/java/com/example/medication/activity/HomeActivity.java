@@ -2,6 +2,7 @@ package com.example.medication.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class HomeActivity extends MainActivity {
     private Button healthButton;
     private Button prescriptionButton;
     private Button scheduleButton;
+    private Button addNewMedicationButton;
     private FloatingActionButton addMemberButton;
 
     @Override
@@ -68,12 +70,14 @@ public class HomeActivity extends MainActivity {
         prescriptionButton = findViewById(R.id.prescriptionButton);
         scheduleButton = findViewById(R.id.scheduleButton);
         addMemberButton = findViewById(R.id.addMemberButton);
+        addNewMedicationButton = findViewById(R.id.add_new_medication);
 
         statisticButton.setOnClickListener(this);
         healthButton.setOnClickListener(this);
         scheduleButton.setOnClickListener(this);
         prescriptionButton.setOnClickListener(this);
         addMemberButton.setOnClickListener(this);
+        addNewMedicationButton.setOnClickListener(this);
     }
 
     @Override
@@ -90,6 +94,9 @@ public class HomeActivity extends MainActivity {
             TransferActivity.transferActivity(this, AddMemberActivity.class);
         else if (id == R.id.prescriptionButton)
             TransferActivity.transferActivity(this, PrescriptionActivity.class);
+        else if (id == R.id.add_new_medication)
+            TransferActivity.transferActivity(this, NewMedication.class);
+
     }
 
     private void loadMedication() {
@@ -173,9 +180,12 @@ public class HomeActivity extends MainActivity {
                                             }
                                         });
                                     } else {
-                                        // Thực hiện hành động cho lựa chọn khác
-                                        // Ví dụ: Hiển thị thông báo khác
-                                        // Toast.makeText(HomeActivity.this, "Lựa chọn: " + selectedOption, Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(HomeActivity.this,UpdateTimeMedication.class);
+                                        intent.putExtra("medicationId",item.getId());
+                                        intent.putExtra("medicationName",item.getName());
+                                        intent.putExtra("medicationQuantity",item.getQuantity());
+                                        intent.putExtra("medicationTime",item.getTime());
+                                        startActivity(intent);
                                     }
                                     // Đóng AlertDialog
                                     dialog.dismiss();

@@ -62,6 +62,7 @@ public class PrescriptionActivity extends MainActivity {
                 } else {
                     System.out.println("error");
                 }
+
             }
 
             @Override
@@ -115,9 +116,8 @@ public class PrescriptionActivity extends MainActivity {
         TextView prescriptionDateTextView = prescriptionView.findViewById(R.id.prescription_date);
 
         // Set data for TextViews
-        prescriptionNameTextView.setText(formatDate(prescription.getCreatedAt()));
-//        prescriptionDateTextView.setText("Date: " + prescription.getDate());
-
+        prescriptionDateTextView.setText("Ngày: "+formatDate(prescription.getCreatedAt()));
+        prescriptionNameTextView.setText("Bệnh: "+prescription.getDisease());
 
         prescriptionView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,9 +133,22 @@ public class PrescriptionActivity extends MainActivity {
                 startActivity(intent);
             }
         });
+
         if (prescription.getStatus().equals(0)) {
             prescriptionNameTextView.setTextColor(getResources().getColor(R.color.red_color));
         }
+
+        // Set margin for prescriptionView
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.setMargins(0, 0, 0, 16); // Đặt khoảng cách dưới là 16 pixels, bạn có thể điều chỉnh theo ý muốn
+
+        prescriptionView.setLayoutParams(layoutParams);
+
+        // Add prescriptionView to prescriptionListLayout
         prescriptionListLayout.addView(prescriptionView);
     }
+
 }

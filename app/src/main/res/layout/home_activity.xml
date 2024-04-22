@@ -309,7 +309,7 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="190dp"
                     android:background="@drawable/right_angle">
 
                     <LinearLayout
@@ -320,7 +320,17 @@
 
                     </LinearLayout>
                 </ScrollView>
+                <Button
+                    android:id="@+id/add_new_medication"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add new Medication"
+                    android:textSize="12dp"
+                    android:background="@color/blue_color"
+                     />
             </LinearLayout>
+
+
         </TableRow>
 
     </LinearLayout>
