@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.medication.R;
 import com.example.medication.activity.HomeActivity;
 import com.example.medication.activity.UserActivity;
+import com.example.medication.vinhquang.activity.ChatActivity;
 import com.example.medication.vinhquang.activity.MedicationActivity;
 import com.example.medication.vinhquang.activity.NotificationActivity;
 import com.example.medication.activity.NotificationSettingActivity;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             TransferActivity.transferActivity(this, UserActivity.class);
         else if(id == R.id.medicationButton)
             TransferActivity.transferActivity(this, SearchMedActivity.class);
+        else if(id == R.id.chatButton)
+            TransferActivity.transferActivity(this, ChatActivity.class);
     }
 
     private BroadcastReceiver receiver;
@@ -74,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onReceive(Context context, Intent intent) {
-                String message = intent.getStringExtra("message");
+                String message = intent.getStringExtra("notification");
                 showToast(message);
             }
         };

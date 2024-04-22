@@ -16,4 +16,9 @@ public final class TransferActivity extends AppCompatActivity {
         intent.putExtra("id", id);
         context.startActivity(intent);
     }
+    public static void transferActivityWithText(Context context, Class<?> activity, String text) {
+        Intent intent = new Intent(context, activity);
+        intent.putExtra("text", text);
+        context.startActivity(intent);
+    }
 }

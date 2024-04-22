@@ -1,5 +1,7 @@
 package com.example.medication.vinhquang.activity;
 
+import static com.example.medication.util.TransferActivity.transferActivityWithId;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -32,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchPeopleActivity extends MainActivity {
+public class SearchDialogActivity extends MainActivity {
     private final ApiService api = ServiceGenerator.createService(ApiService.class);
     GlobalValues globalValues = GlobalValues.getInstance();
     EditText searchPeople;
@@ -43,7 +45,7 @@ public class SearchPeopleActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_people_activity);
+        setContentView(R.layout.search_dialog_activity);
 
         constructor();
     }
@@ -51,6 +53,13 @@ public class SearchPeopleActivity extends MainActivity {
     @Override
     public void constructor() {
         super.constructor();
+
+        String searchName = getIntent().getStringExtra("text");
+        if(globalValues.getRole() == 0) {
+            searchDoctor(searchName);
+        } else {
+            searchPatient(searchName);
+        }
 
         rootLayout = findViewById(R.id.noti);
         Button returnButton = findViewById(R.id.returnBtn);
@@ -67,10 +76,10 @@ public class SearchPeopleActivity extends MainActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(globalValues.getSearchType() == 0) {
-                    searchDoctor();
+                if(globalValues.getRole() == 0) {
+                    searchDoctor(searchPeople.getText().toString());
                 } else {
-                    searchPatient();
+                    searchPatient(searchPeople.getText().toString());
                 }
             }
         });
@@ -86,8 +95,9 @@ public class SearchPeopleActivity extends MainActivity {
         searchPeople.setText("");
     }
 
-    public void searchDoctor() {
-        api.searchDoctor(searchPeople.getText().toString()).enqueue(new Callback<List<SearchResponse>>() {
+
+    public void searchDoctor(String name) {
+        api.searchDoctor(name).enqueue(new Callback<List<SearchResponse>>() {
             @Override
             public void onResponse(Call<List<SearchResponse>> call, Response<List<SearchResponse>> response) {
                 if (response.isSuccessful()) {
@@ -112,8 +122,8 @@ public class SearchPeopleActivity extends MainActivity {
         });
     }
 
-    public void searchPatient() {
-        api.searchPatient(globalValues.getUserId(), searchPeople.getText().toString()).enqueue(new Callback<List<SearchResponse>>() {
+    public void searchPatient(String name) {
+        api.searchPatient(globalValues.getUserId(), name).enqueue(new Callback<List<SearchResponse>>() {
             @Override
             public void onResponse(Call<List<SearchResponse>> call, Response<List<SearchResponse>> response) {
                 if (response.isSuccessful()) {
@@ -209,22 +219,36 @@ public class SearchPeopleActivity extends MainActivity {
             @Override
             public void onClick(View v) {
                 int idValue = (int) v.getTag(R.id.id);
-                String name = String.valueOf(v.getTag(R.id.name));
-                String des = String.valueOf(v.getTag(R.id.des));
-                SearchResponse people = new SearchResponse();
-                people.setId(idValue);
-                people.setName(name);
-                people.setDescription(des);
-
-                if(globalValues.getSearchType() == 0) {
-                    globalValues.setDocterSearch(people);
-                } else {
-                    globalValues.setPatientSearch(people);
-                }
-
-                finish();
+                clickDialog(idValue);
             }
         });
 
     }
+
+    public void clickDialog(Integer sId) {
+        api.createOrGetDialog(globalValues.getUserId(), sId, globalValues.getRole()).enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.isSuccessful()) {
+                    Integer dialogId = response.body();
+                    transferActivityWithId(SearchDialogActivity.this, DialogActivity.class, dialogId);
+                } else {
+                    System.out.println("error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                t.printStackTrace();
+                System.err.println("Đã xảy ra lỗi: " + t.getMessage());
+            }
+        });
+    }
 }
+
+
+
+
+
+
+
