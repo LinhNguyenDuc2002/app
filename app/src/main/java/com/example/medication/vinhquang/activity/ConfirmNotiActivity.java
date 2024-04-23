@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -218,7 +219,46 @@ public class ConfirmNotiActivity extends MainActivity {
         buttonLinearLayout.addView(acceptButton);
         buttonLinearLayout.addView(rejectButton);
 
-        return buttonLinearLayout;
+        acceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirm(1);
+                finish();
+            }
+        });
 
+        rejectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirm(2);
+                finish();
+            }
+        });
+
+        return buttonLinearLayout;
+    }
+
+    public void confirm(Integer status) {
+        Integer role = 1;
+        if(globalValues.getRole() == 1) {
+            role = 0;
+        }
+        api.confirm(id, role, status).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    String data = response.body();
+                    System.out.println("vinhquang .... " + data);
+                } else {
+                    System.out.println("error get old");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                t.printStackTrace();
+                System.err.println("Đã xảy ra lỗi: " + t.getMessage());
+            }
+        });
     }
 }

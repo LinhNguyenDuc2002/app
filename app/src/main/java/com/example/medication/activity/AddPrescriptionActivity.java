@@ -55,8 +55,13 @@ public class AddPrescriptionActivity extends MainActivity {
         disease = findViewById(R.id.disease);
 
         loadData();
+        constructor();
     }
 
+    @Override
+    public void constructor() {
+        super.constructor();
+    }
     private void loadData() {
         List<TableRow> addedRows = new ArrayList<>();
 
@@ -114,6 +119,8 @@ public class AddPrescriptionActivity extends MainActivity {
                     prescribedMedDtoList.add(prescribedMedDto);
                 }
                 System.out.println(prescribedMedDtoList.get(0).getName());
+                System.out.println(prescribedMedDtoList.get(0).getQuantity());
+                System.out.println(prescribedMedDtoList.get(0).getNote());
                 prescriptionService.addNewPrescription(6,patientId,benh,prescribedMedDtoList).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {

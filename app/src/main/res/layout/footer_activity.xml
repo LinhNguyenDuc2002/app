@@ -30,7 +30,7 @@
             tools:layout_editor_absoluteY="0dp" />
 
         <Button
-            android:id="@+id/prescriptionButton"
+            android:id="@+id/medicationButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="30dp"

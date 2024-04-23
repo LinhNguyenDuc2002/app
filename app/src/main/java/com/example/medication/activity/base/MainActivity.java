@@ -12,18 +12,24 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.medication.R;
+import com.example.medication.activity.DoctorHomeActivity;
 import com.example.medication.activity.HomeActivity;
 import com.example.medication.activity.UserActivity;
+import com.example.medication.vinhquang.activity.ChatActivity;
+import com.example.medication.vinhquang.activity.MedicationActivity;
 import com.example.medication.vinhquang.activity.NotificationActivity;
 import com.example.medication.activity.NotificationSettingActivity;
 import com.example.medication.util.TransferActivity;
+import com.example.medication.vinhquang.activity.SearchMedActivity;
+import com.example.medication.vinhquang.util.GlobalValues;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    GlobalValues globalValues = GlobalValues.getInstance();
     protected Button bellButton;
 
     protected Button setupButton;
 
-    protected Button prescriptionButton;
+    protected Button medicationButton;
 
     protected Button homeButton;
 
@@ -34,14 +40,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void constructor() {
         bellButton = findViewById(R.id.bellButton);
         setupButton = findViewById(R.id.setupButton);
-        prescriptionButton = findViewById(R.id.prescriptionButton);
+        medicationButton = findViewById(R.id.medicationButton);
         homeButton = findViewById(R.id.homeButton);
         chatButton = findViewById(R.id.chatButton);
         userButton = findViewById(R.id.userButton);
 
         bellButton.setOnClickListener(this);
         setupButton.setOnClickListener(this);
-        prescriptionButton.setOnClickListener(this);
+        medicationButton.setOnClickListener(this);
         homeButton.setOnClickListener(this);
         chatButton.setOnClickListener(this);
         userButton.setOnClickListener(this);
@@ -58,10 +64,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             TransferActivity.transferActivity(this, NotificationActivity.class);
         else if(id == R.id.setupButton)
             TransferActivity.transferActivity(this, NotificationSettingActivity.class);
-        else if(id == R.id.homeButton)
-            TransferActivity.transferActivity(this, HomeActivity.class);
+        else if(id == R.id.homeButton) {
+//            if(globalValues.getRole() == 0)
+                TransferActivity.transferActivity(this, HomeActivity.class);
+//            else
+//                TransferActivity.transferActivity(this, DoctorHomeActivity.class);
+        }
         else if(id == R.id.userButton)
             TransferActivity.transferActivity(this, UserActivity.class);
+        else if(id == R.id.medicationButton)
+            TransferActivity.transferActivity(this, SearchMedActivity.class);
+        else if(id == R.id.chatButton)
+            TransferActivity.transferActivity(this, ChatActivity.class);
     }
 
     private BroadcastReceiver receiver;
@@ -70,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onReceive(Context context, Intent intent) {
-                String message = intent.getStringExtra("message");
+                String message = intent.getStringExtra("notification");
                 showToast(message);
             }
         };
@@ -78,11 +92,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("resume............");
 
         // Đăng ký BroadcastReceiver
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            registerReceiver(receiver, new IntentFilter("NOTIFICATION"), RECEIVER_EXPORTED);
+            registerReceiver(receiver, new IntentFilter("ACTION_SHOW_NOTIFICATION"), RECEIVER_EXPORTED);
         }
     }
 

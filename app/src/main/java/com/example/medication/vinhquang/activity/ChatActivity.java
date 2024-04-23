@@ -1,14 +1,8 @@
-package com.example.medication.activity;
+package com.example.medication.vinhquang.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import static com.example.medication.util.TransferActivity.transferActivityWithId;
+import static com.example.medication.util.TransferActivity.transferActivityWithText;
 import static com.example.medication.vinhquang.util.DateTimeUtil.dateTimeToString;
-import static com.example.medication.vinhquang.util.FirebaseUtil.getListOldNoti;
-import static com.example.medication.vinhquang.util.FirebaseUtil.getToken;
-import static com.example.medication.vinhquang.util.FirebaseUtil.setTokenToUser;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -17,18 +11,21 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
 import com.example.medication.service.ServiceGenerator;
-import com.example.medication.util.TransferActivity;
-import com.example.medication.vinhquang.activity.AppointmentActivity;
-import com.example.medication.vinhquang.activity.DetailAppActivity;
 import com.example.medication.vinhquang.api.ApiService;
-import com.example.medication.vinhquang.data.AppointmentResponse;
+import com.example.medication.vinhquang.data.DialogResponse;
 import com.example.medication.vinhquang.util.GlobalValues;
 
 import java.util.List;
@@ -37,27 +34,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DoctorHomeActivity extends MainActivity {
+public class ChatActivity extends MainActivity {
     GlobalValues globalValues = GlobalValues.getInstance();
     private final ApiService api = ServiceGenerator.createService(ApiService.class);
-    List<AppointmentResponse> data;
+    List<DialogResponse> data;
     LinearLayout rootLayout;
-    private Button preBtn;
-    private Button appBtn;
+    EditText searchPeople;
+    Button send;
 
-    private Button doctor_pre,doctor_new_prescription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.doctor_home_activity);
-        doctor_pre = findViewById(R.id.preBtn);
-        doctor_pre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DoctorHomeActivity.this,DoctorPrescriptionActivity.class);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.chat_activity);
 
         constructor();
     }
@@ -66,36 +54,31 @@ public class DoctorHomeActivity extends MainActivity {
     public void constructor() {
         super.constructor();
 
-        appBtn = findViewById(R.id.appBtn);
-
-        appBtn.setOnClickListener(this);
-
         rootLayout = findViewById(R.id.noti);
-        getToken(6);
-        getAllApps();
+        getAllDialogs();
+
+        searchPeople = findViewById(R.id.search);
+        send = findViewById(R.id.send);
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transferActivityWithText(ChatActivity.this, SearchDialogActivity.class, searchPeople.getText().toString());
+            }
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-
-        int id = v.getId();
-
-        if (id == R.id.appBtn)
-            TransferActivity.transferActivity(this, AppointmentActivity.class);
-    }
-
-    public void getAllApps() {
-        api.getAllAppToday(6).enqueue(new Callback<List<AppointmentResponse>>() {
+    public void getAllDialogs() {
+        api.getAllDialog(globalValues.getUserId(), globalValues.getRole()).enqueue(new Callback<List<DialogResponse>>() {
 
             @Override
-            public void onResponse(Call<List<AppointmentResponse>> call, Response<List<AppointmentResponse>> response) {
+            public void onResponse(Call<List<DialogResponse>> call, Response<List<DialogResponse>> response) {
                 if (response.isSuccessful()) {
                     data = response.body();
                     System.out.println("vinhquang .... " + data.size());
 
-                    data.forEach(a -> {
-                        render(a);
+                    data.forEach(d -> {
+                        render(d);
                     });
                 } else {
                     System.out.println("error get old");
@@ -103,7 +86,7 @@ public class DoctorHomeActivity extends MainActivity {
             }
 
             @Override
-            public void onFailure(Call<List<AppointmentResponse>> call, Throwable t) {
+            public void onFailure(Call<List<DialogResponse>> call, Throwable t) {
                 t.printStackTrace();
                 System.err.println("Đã xảy ra lỗi: " + t.getMessage());
             }
@@ -111,12 +94,14 @@ public class DoctorHomeActivity extends MainActivity {
         });
     }
 
-    public void render(AppointmentResponse a) {
+    public void render(DialogResponse d) {
         LinearLayout parentLayout = new LinearLayout(this);
-        parentLayout.setTag(R.id.id, a.getId());
-        parentLayout.setLayoutParams(new LinearLayout.LayoutParams(
+        parentLayout.setTag(R.id.id, d.getId());
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(0,0,0,20);
+        parentLayout.setLayoutParams(layoutParams);
         parentLayout.setOrientation(LinearLayout.VERTICAL);
 
         LinearLayout userLayout = new LinearLayout(this);
@@ -154,9 +139,12 @@ public class DoctorHomeActivity extends MainActivity {
         nameTextView.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
-        nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+        nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         nameTextView.setTypeface(null, Typeface.BOLD);
-        String fullName = a.getPatient().getFullName();
+        String fullName = d.getDoctor().getFullName();
+        if(globalValues.getRole() == 1) {
+            fullName = d.getPatient().getFullName();
+        }
         nameTextView.setText(fullName);
         nameTextView.setTextColor(Color.parseColor("#000000"));
 
@@ -166,7 +154,7 @@ public class DoctorHomeActivity extends MainActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         timeTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         timeTextView.setTypeface(null, Typeface.ITALIC);
-        timeTextView.setText(dateTimeToString(a.getDateTime()));
+        timeTextView.setText(dateTimeToString(d.getUpdatedAt()));
         timeTextView.setTextColor(Color.parseColor("#000000"));
 
         infoLayout.addView(nameTextView);
@@ -191,19 +179,11 @@ public class DoctorHomeActivity extends MainActivity {
             @Override
             public void onClick(View v) {
                 int idValue = (int) v.getTag(R.id.id);
-                transferActivityWithId(DoctorHomeActivity.this, DetailAppActivity.class, idValue);
+                transferActivityWithId(ChatActivity.this, DialogActivity.class, idValue);
             }
         });
     }
 }
-
-
-
-
-
-
-
-
 
 
 

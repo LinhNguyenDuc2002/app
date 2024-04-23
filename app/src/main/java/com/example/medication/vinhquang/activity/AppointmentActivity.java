@@ -1,14 +1,7 @@
-package com.example.medication.activity;
+package com.example.medication.vinhquang.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import static com.example.medication.util.TransferActivity.transferActivityWithId;
 import static com.example.medication.vinhquang.util.DateTimeUtil.dateTimeToString;
-import static com.example.medication.vinhquang.util.FirebaseUtil.getListOldNoti;
-import static com.example.medication.vinhquang.util.FirebaseUtil.getToken;
-import static com.example.medication.vinhquang.util.FirebaseUtil.setTokenToUser;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -20,13 +13,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
 import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.TransferActivity;
-import com.example.medication.vinhquang.activity.AppointmentActivity;
-import com.example.medication.vinhquang.activity.DetailAppActivity;
 import com.example.medication.vinhquang.api.ApiService;
 import com.example.medication.vinhquang.data.AppointmentResponse;
 import com.example.medication.vinhquang.util.GlobalValues;
@@ -37,27 +33,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DoctorHomeActivity extends MainActivity {
+public class AppointmentActivity extends MainActivity {
+
     GlobalValues globalValues = GlobalValues.getInstance();
     private final ApiService api = ServiceGenerator.createService(ApiService.class);
     List<AppointmentResponse> data;
     LinearLayout rootLayout;
-    private Button preBtn;
-    private Button appBtn;
 
-    private Button doctor_pre,doctor_new_prescription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.doctor_home_activity);
-        doctor_pre = findViewById(R.id.preBtn);
-        doctor_pre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DoctorHomeActivity.this,DoctorPrescriptionActivity.class);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.appointment_activity);
 
         constructor();
     }
@@ -66,27 +52,21 @@ public class DoctorHomeActivity extends MainActivity {
     public void constructor() {
         super.constructor();
 
-        appBtn = findViewById(R.id.appBtn);
-
-        appBtn.setOnClickListener(this);
+        Button add = findViewById(R.id.add);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                globalValues.setSearchType(-1);
+                TransferActivity.transferActivity(AppointmentActivity.this, AddAppActivity.class);
+            }
+        });
 
         rootLayout = findViewById(R.id.noti);
-        getToken(6);
         getAllApps();
     }
 
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-
-        int id = v.getId();
-
-        if (id == R.id.appBtn)
-            TransferActivity.transferActivity(this, AppointmentActivity.class);
-    }
-
     public void getAllApps() {
-        api.getAllAppToday(6).enqueue(new Callback<List<AppointmentResponse>>() {
+        api.getAllApps(globalValues.getUserId(), globalValues.getRole()).enqueue(new Callback<List<AppointmentResponse>>() {
 
             @Override
             public void onResponse(Call<List<AppointmentResponse>> call, Response<List<AppointmentResponse>> response) {
@@ -156,7 +136,10 @@ public class DoctorHomeActivity extends MainActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
         nameTextView.setTypeface(null, Typeface.BOLD);
-        String fullName = a.getPatient().getFullName();
+        String fullName = a.getDoctor().getFullName();
+        if(globalValues.getRole() == 1) {
+            fullName = a.getPatient().getFullName();
+        }
         nameTextView.setText(fullName);
         nameTextView.setTextColor(Color.parseColor("#000000"));
 
@@ -191,26 +174,8 @@ public class DoctorHomeActivity extends MainActivity {
             @Override
             public void onClick(View v) {
                 int idValue = (int) v.getTag(R.id.id);
-                transferActivityWithId(DoctorHomeActivity.this, DetailAppActivity.class, idValue);
+                transferActivityWithId(AppointmentActivity.this, DetailAppActivity.class, idValue);
             }
         });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
