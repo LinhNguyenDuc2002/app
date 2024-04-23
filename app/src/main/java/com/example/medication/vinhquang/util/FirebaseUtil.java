@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class FirebaseUtil {
     private static final ApiService api = ServiceGenerator.createService(ApiService.class);
     private static GlobalValues globalValues = GlobalValues.getInstance();
-    public static void getToken(Integer id) {
+    public static void getToken() {
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
@@ -41,7 +41,7 @@ public class FirebaseUtil {
                         String token = task.getResult();
                         globalValues.setToken(token);
 
-                        setTokenToUser(id);
+                        setTokenToUser(globalValues.getUserId());
                         Log.d(TAG, token);
                     }
                 });
@@ -49,7 +49,7 @@ public class FirebaseUtil {
 
     public static void setTokenToUser(Integer id) {
         GlobalValues globalValues = GlobalValues.getInstance();
-        globalValues.setUserId(id);
+//        globalValues.setUserId(id);
         api.setToken(globalValues.getUserId(), globalValues.getToken()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
