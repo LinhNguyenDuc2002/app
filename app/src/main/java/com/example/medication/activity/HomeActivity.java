@@ -96,6 +96,8 @@ public class HomeActivity extends MainActivity {
             TransferActivity.transferActivity(this, PrescriptionActivity.class);
         else if (id == R.id.add_new_medication)
             TransferActivity.transferActivity(this, NewMedication.class);
+        else if (id == R.id.scheduleButton)
+            TransferActivity.transferActivity(this, AppointmentActivity.class);
     }
 
     private void loadMedication() {

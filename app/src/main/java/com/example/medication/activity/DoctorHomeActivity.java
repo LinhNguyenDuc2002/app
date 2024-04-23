@@ -50,6 +50,7 @@ public class DoctorHomeActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctor_home_activity);
+
         doctor_pre = findViewById(R.id.preBtn);
         doctor_pre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +64,7 @@ public class DoctorHomeActivity extends MainActivity {
     }
 
     @Override
-    public void constructor() {
+    protected void constructor() {
         super.constructor();
 
         appBtn = findViewById(R.id.appBtn);
@@ -195,6 +196,8 @@ public class DoctorHomeActivity extends MainActivity {
             }
         });
     }
+
+
 }
 
 
