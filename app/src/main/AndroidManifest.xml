@@ -58,20 +58,10 @@
         <activity
             android:name=".activity.HomeActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activity.DoctorHomeActivity"
             android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".activity.DetailNotificationActivity"
@@ -92,22 +82,28 @@
             android:name=".activity.StatisticActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.UserActivity"
+            android:name=".quan.activity.UserActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.AddMemberActivity"
+            android:name=".quan.activity.AddMemberActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.RepasswordActivity"
+            android:name=".quan.activity.RepasswordActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.SignInActivity"
+            android:name=".quan.activity.SignInActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".quan.activity.ForgotPassActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.ForgotPassActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activity.SignUpActivity"
+            android:name=".quan.activity.SignUpActivity"
             android:exported="true" />
         <activity
             android:name=".activity.PrescriptionActivity"

@@ -13,14 +13,14 @@
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
-        android:gravity="center"
+        android:background="@color/light_gray"
         android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/textView49"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="90dp"
             android:gravity="bottom|center"
             android:text="Thông tin cá nhân"
             android:textColor="@color/main_green"
@@ -37,9 +37,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="282dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
             android:orientation="vertical">
 
@@ -60,7 +60,7 @@
                     android:textSize="20dp" />
 
                 <EditText
-                    android:id="@+id/usernameET"
+                    android:id="@+id/gmail"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -141,8 +141,8 @@
 
         <Button
             android:id="@+id/SignupButton"
-            android:layout_width="200dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:backgroundTint="@color/main_green"
             android:text="Lưu thay đổi"
@@ -170,7 +170,8 @@
         <Button
             android:id="@+id/LogoutButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:backgroundTint="@color/main_green"
             android:text="Đăng xuất" />
 

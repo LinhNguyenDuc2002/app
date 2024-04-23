@@ -1,4 +1,4 @@
-package com.example.medication.activity;
+package com.example.medication.quan.activity;
 
 import android.os.Bundle;
 import android.view.View;

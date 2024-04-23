@@ -3,7 +3,6 @@ package com.example.medication.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -16,17 +15,21 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-
 import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
 import com.example.medication.data.DTO.DailyStatusDto;
 import com.example.medication.data.DTO.PrescribedMedDto;
+import com.example.medication.data.Question;
+import com.example.medication.quan.activity.AddMemberActivity;
+import com.example.medication.quan.respone.PatientRespone;
 import com.example.medication.service.DailyStatusService;
+import com.example.medication.service.PatientService;
 import com.example.medication.service.PrescribedMedicationService;
 import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.TransferActivity;
 import com.example.medication.vinhquang.activity.AppointmentActivity;
+import com.example.medication.vinhquang.util.GlobalValues;
+import com.example.medication.vinhquang.util.PatientGlobalValues;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import static com.example.medication.vinhquang.util.FirebaseUtil.*;
 
@@ -37,9 +40,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeActivity extends MainActivity {
+    GlobalValues globalValues = GlobalValues.getInstance();
     private final PrescribedMedicationService prescribedMedicationService = ServiceGenerator.createService(PrescribedMedicationService.class);
     private final DailyStatusService dailyStatusService = ServiceGenerator.createService(DailyStatusService.class);
+    private final PatientService patientService = ServiceGenerator.createService(PatientService.class);
     private LinearLayout listMedicationLayout;
+    private LinearLayout listPatientLayout;
 
     private Button statisticButton;
     private Button healthButton;
@@ -55,6 +61,7 @@ public class HomeActivity extends MainActivity {
 
         constructor();
         loadMedication();
+        getListPatients();
     }
 
     @Override
@@ -62,6 +69,7 @@ public class HomeActivity extends MainActivity {
         super.constructor();
 
         listMedicationLayout = findViewById(R.id.listMedicationLayout);
+        listPatientLayout = findViewById(R.id.listPatientLayout);
 
         statisticButton = findViewById(R.id.statisticButton);
         healthButton = findViewById(R.id.healthButton);
@@ -98,6 +106,42 @@ public class HomeActivity extends MainActivity {
             TransferActivity.transferActivity(this, NewMedication.class);
         else if (id == R.id.scheduleButton)
             TransferActivity.transferActivity(this, AppointmentActivity.class);
+    }
+
+    private void getListPatients() {
+        patientService.getListPatients(globalValues.getUserId()).enqueue(new Callback<List<PatientRespone>>() {
+            @Override
+            public void onResponse(Call<List<PatientRespone>> call, Response<List<PatientRespone>> response) {
+                if (response.isSuccessful()) {
+                    List<PatientRespone> data = response.body();
+                    showListPatients(data);
+                } else {
+                    System.out.println("error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<PatientRespone>> call, Throwable t) {
+                t.printStackTrace();
+                System.err.println("Đã xảy ra lỗi: " + t.getMessage());
+            }
+        });
+    }
+
+    private  void showListPatients(List<PatientRespone> patientResponeList) {
+//        LinearLayout.LayoutParams linearLayout = new LinearLayout.LayoutParams(
+//                80,
+//                LinearLayout.LayoutParams.MATCH_PARENT
+//        );
+//        linearLayout.setMargins(10, 0, 20, 0);
+//        for(PatientRespone patientRespone : patientResponeList) {
+//            LinearLayout patientLayout = new LinearLayout(listPatientLayout.getContext());
+//            patientLayout.setLayoutParams(linearLayout);
+//
+//            patientLayout.addView();
+//
+//
+//        }
     }
 
     private void loadMedication() {
