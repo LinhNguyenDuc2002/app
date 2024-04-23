@@ -17,6 +17,7 @@ import com.example.medication.data.DailyResponse;
 import com.example.medication.data.DetailStatistic;
 import com.example.medication.service.ServiceGenerator;
 import com.example.medication.service.StatisticService;
+import com.example.medication.vinhquang.util.PatientGlobalValues;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailStatisticActivity extends MainActivity {
+    PatientGlobalValues patientGlobalValues = PatientGlobalValues.getInstance();
     private final StatisticService statisticService = ServiceGenerator.createService(StatisticService.class);
 
     private LinearLayout listDetailStatistic;
@@ -74,7 +76,7 @@ public class DetailStatisticActivity extends MainActivity {
                 parameters.put("prescription", String.valueOf(extras.getInt("prescription")));
             }
 
-            statisticService.getDetailStatistic(1, parameters).enqueue(new Callback<List<DetailStatistic>>() {
+            statisticService.getDetailStatistic(patientGlobalValues.getId(), parameters).enqueue(new Callback<List<DetailStatistic>>() {
                 @Override
                 public void onResponse(Call<List<DetailStatistic>> call, Response<List<DetailStatistic>> response) {
                     if (response.isSuccessful()) {

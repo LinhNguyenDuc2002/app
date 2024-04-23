@@ -5,12 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -33,6 +35,7 @@ import com.example.medication.vinhquang.util.PatientGlobalValues;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import static com.example.medication.vinhquang.util.FirebaseUtil.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,6 +44,7 @@ import retrofit2.Response;
 
 public class HomeActivity extends MainActivity {
     GlobalValues globalValues = GlobalValues.getInstance();
+    PatientGlobalValues patientGlobalValues = PatientGlobalValues.getInstance();
     private final PrescribedMedicationService prescribedMedicationService = ServiceGenerator.createService(PrescribedMedicationService.class);
     private final DailyStatusService dailyStatusService = ServiceGenerator.createService(DailyStatusService.class);
     private final PatientService patientService = ServiceGenerator.createService(PatientService.class);
@@ -54,19 +58,23 @@ public class HomeActivity extends MainActivity {
     private Button addNewMedicationButton;
     private FloatingActionButton addMemberButton;
 
+    private List<LinearLayout> listPatients;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
 
         constructor();
-        loadMedication();
+//        loadMedication();
         getListPatients();
     }
 
     @Override
     public void constructor() {
         super.constructor();
+
+        listPatients = new ArrayList<>();
 
         listMedicationLayout = findViewById(R.id.listMedicationLayout);
         listPatientLayout = findViewById(R.id.listPatientLayout);
@@ -106,10 +114,19 @@ public class HomeActivity extends MainActivity {
             TransferActivity.transferActivity(this, NewMedication.class);
         else if (id == R.id.scheduleButton)
             TransferActivity.transferActivity(this, AppointmentActivity.class);
+        else {
+            LinearLayout clickedLayout = (LinearLayout) v;
+
+            for(LinearLayout item :  listPatients) {
+                item.setBackgroundColor(getResources().getColor(R.color.orange_color));
+            }
+            clickedLayout.setBackgroundColor(getResources().getColor(R.color.green_color));
+            patientGlobalValues.setId(clickedLayout.getId());
+        }
     }
 
     private void getListPatients() {
-        patientService.getListPatients(globalValues.getUserId()).enqueue(new Callback<List<PatientRespone>>() {
+        patientService.getListPatients(1).enqueue(new Callback<List<PatientRespone>>() {
             @Override
             public void onResponse(Call<List<PatientRespone>> call, Response<List<PatientRespone>> response) {
                 if (response.isSuccessful()) {
@@ -129,19 +146,51 @@ public class HomeActivity extends MainActivity {
     }
 
     private  void showListPatients(List<PatientRespone> patientResponeList) {
-//        LinearLayout.LayoutParams linearLayout = new LinearLayout.LayoutParams(
-//                80,
-//                LinearLayout.LayoutParams.MATCH_PARENT
-//        );
-//        linearLayout.setMargins(10, 0, 20, 0);
-//        for(PatientRespone patientRespone : patientResponeList) {
-//            LinearLayout patientLayout = new LinearLayout(listPatientLayout.getContext());
-//            patientLayout.setLayoutParams(linearLayout);
-//
-//            patientLayout.addView();
-//
-//
-//        }
+        LinearLayout.LayoutParams linearLayout = new LinearLayout.LayoutParams(
+                180,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+        linearLayout.setMargins(10, 0, 20, 0);
+
+        for(PatientRespone patientRespone : patientResponeList) {
+            LinearLayout patientLayout = new LinearLayout(listPatientLayout.getContext());
+            patientLayout.setId(patientRespone.getId());
+            patientLayout.setLayoutParams(linearLayout);
+            patientLayout.setBackgroundColor(getResources().getColor(R.color.orange_color));
+            patientLayout.setOrientation(LinearLayout.VERTICAL);
+
+            ImageView imageView = new ImageView(patientLayout.getContext());
+            LinearLayout.LayoutParams imagelayoutParams = new LinearLayout.LayoutParams(
+                    140,
+                    140
+            );
+            imagelayoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.TOP | Gravity.CENTER_VERTICAL;
+            imageView.setLayoutParams(imagelayoutParams);
+            imageView.setBackground(getResources().getDrawable(R.drawable.oval));
+            imageView.setClickable(true);
+            imageView.setContentDescription(getString(R.string.app_name));
+            imageView.setImageResource(R.drawable.round_person_24);
+
+            TextView textView = new TextView(patientLayout.getContext());
+            LinearLayout.LayoutParams textlayoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            );
+            textlayoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM | Gravity.CENTER_VERTICAL;
+            textlayoutParams.setMargins(0, 5,0 , 0);
+            textView.setLayoutParams(textlayoutParams);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            textView.setGravity(Gravity.CENTER);
+            textView.setSingleLine(true);
+            textView.setText(patientRespone.getFullName());
+            textView.setTextSize(12);
+
+            patientLayout.addView(imageView);
+            patientLayout.addView(textView);
+            listPatientLayout.addView(patientLayout);
+            patientLayout.setOnClickListener(this);
+            listPatients.add(patientLayout);
+        }
     }
 
     private void loadMedication() {

@@ -21,6 +21,7 @@ import com.example.medication.service.AssessmentService;
 import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.StringUtil;
 import com.example.medication.util.TransferActivity;
+import com.example.medication.vinhquang.util.PatientGlobalValues;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HealthAssessmentActivity extends MainActivity {
+    PatientGlobalValues patientGlobalValues = PatientGlobalValues.getInstance();
     private final AssessmentService assessmentService = ServiceGenerator.createService(AssessmentService.class);
 
     private LinearLayout listQuestionLayout;
@@ -127,7 +129,7 @@ public class HealthAssessmentActivity extends MainActivity {
     }
 
     private void postAnswerForm() {
-        assessmentService.postAnswer(1, packData()).enqueue(new Callback<AssessmentResult>() {
+        assessmentService.postAnswer(patientGlobalValues.getId(), packData()).enqueue(new Callback<AssessmentResult>() {
             @Override
             public void onResponse(Call<AssessmentResult> call, Response<AssessmentResult> response) {
                 if (response.isSuccessful()) {

@@ -20,6 +20,7 @@ import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.DateUtil;
 import com.example.medication.util.DialogUtil;
 import com.example.medication.util.StringUtil;
+import com.example.medication.vinhquang.util.PatientGlobalValues;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -37,7 +38,7 @@ import retrofit2.Response;
 
 public class HealthStatisticActivity extends MainActivity  {
     private final AssessmentService assessmentService = ServiceGenerator.createService(AssessmentService.class);
-
+    PatientGlobalValues patientGlobalValues = PatientGlobalValues.getInstance();
     private LineChart lineChart;
     private LinearLayout listHistory;
 
@@ -87,7 +88,7 @@ public class HealthStatisticActivity extends MainActivity  {
     }
 
     private void loadData() {
-        assessmentService.getHealthStatistic(1).enqueue(new Callback<Map<Integer, Integer>>() {
+        assessmentService.getHealthStatistic(patientGlobalValues.getId()).enqueue(new Callback<Map<Integer, Integer>>() {
             @Override
             public void onResponse(Call<Map<Integer, Integer>> call, Response<Map<Integer, Integer>> response) {
                 if (response.isSuccessful()) {
@@ -112,7 +113,7 @@ public class HealthStatisticActivity extends MainActivity  {
             parameters.put("start", fromDate.getText().toString());
             parameters.put("end", toDate.getText().toString());
 
-            assessmentService.getHealthHistory(1, parameters).enqueue(new Callback<List<AssessmentResult>>() {
+            assessmentService.getHealthHistory(patientGlobalValues.getId(), parameters).enqueue(new Callback<List<AssessmentResult>>() {
                 @Override
                 public void onResponse(Call<List<AssessmentResult>> call, Response<List<AssessmentResult>> response) {
                     if (response.isSuccessful()) {

@@ -21,6 +21,7 @@ import com.example.medication.service.ServiceGenerator;
 import com.example.medication.service.StatisticService;
 import com.example.medication.util.DialogUtil;
 import com.example.medication.util.TransferActivity;
+import com.example.medication.vinhquang.util.PatientGlobalValues;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -42,6 +43,7 @@ import retrofit2.Response;
 public class StatisticActivity extends MainActivity implements OnChartValueSelectedListener, AdapterView.OnItemSelectedListener {
     private final PrescriptionService prescriptionService = ServiceGenerator.createService(PrescriptionService.class);
     private final StatisticService statisticService = ServiceGenerator.createService(StatisticService.class);
+    PatientGlobalValues patientGlobalValues = PatientGlobalValues.getInstance();
 
     private Button showDetailButton;
     private Button okButton;
@@ -136,7 +138,7 @@ public class StatisticActivity extends MainActivity implements OnChartValueSelec
             Map<String, String> parameters = new HashMap<>();
             parameters.put("start", startDate.getText().toString());
             parameters.put("end", endDate.getText().toString());
-            prescriptionService.getPrescriptionByDate(1, parameters).enqueue(new Callback<List<PrescriptionDto>>() {
+            prescriptionService.getPrescriptionByDate(patientGlobalValues.getId(), parameters).enqueue(new Callback<List<PrescriptionDto>>() {
                 @Override
                 public void onResponse(Call<List<PrescriptionDto>> call, Response<List<PrescriptionDto>> response) {
                     if (response.isSuccessful()) {
@@ -165,7 +167,7 @@ public class StatisticActivity extends MainActivity implements OnChartValueSelec
             if(prescriptionId != null && prescriptionId != 0) {
                 parameters.put("prescription", String.valueOf(prescriptionId));
             }
-            statisticService.getStatistic(1, parameters).enqueue(new Callback<Statistic>() {
+            statisticService.getStatistic(patientGlobalValues.getId(), parameters).enqueue(new Callback<Statistic>() {
                 @Override
                 public void onResponse(Call<Statistic> call, Response<Statistic> response) {
                     if (response.isSuccessful()) {
