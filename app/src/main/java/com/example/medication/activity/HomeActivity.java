@@ -85,7 +85,7 @@ public class HomeActivity extends MainActivity {
         addMemberButton.setOnClickListener(this);
         addNewMedicationButton.setOnClickListener(this);
 
-        getToken();
+//        getToken();
     }
 
     @Override

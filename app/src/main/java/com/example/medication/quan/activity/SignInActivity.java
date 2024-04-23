@@ -1,5 +1,7 @@
 package com.example.medication.quan.activity;
 
+import static com.example.medication.vinhquang.util.FirebaseUtil.getToken;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -114,6 +116,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         globalValues.setFullName(userLoginRespone.getFullName());
     }
     public void returnToHome(Integer role){
+        getToken();
         if(role == 0) {
             TransferActivity.transferActivity(this, HomeActivity.class);
         }
