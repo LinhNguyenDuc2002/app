@@ -18,7 +18,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center">
         <EditText
-            android:id="@+id/search_edit_text"
+            android:id="@+id/search_name_patient"
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -31,11 +31,28 @@
             android:singleLine="true" />
 
     </LinearLayout>
+    <ScrollView
+        android:id="@+id/scrollViewDoctor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_bar"
+        android:layout_above="@id/footer_activity">
+        <LinearLayout
+            android:id="@+id/data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/search_bar"
+            android:layout_above="@id/footer_activity"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
 
 
 
 
-    <include layout="@layout/footer_activity" />
+    <include layout="@layout/footer_activity"
+        android:id="@+id/footer_activity"/>
 
 
 </RelativeLayout>

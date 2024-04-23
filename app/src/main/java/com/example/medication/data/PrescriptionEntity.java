@@ -35,9 +35,23 @@ public class PrescriptionEntity {
         this.prescribedMedEntityList = prescribedMedEntityList;
     }
 
+    public PrescriptionEntity(Integer id, String disease, Date createdAt, Date updatedAt, Date expiredAt, Integer status, UserEntity userEntity, PatientEntity patientEntity, List<PrescribedMedEntity> prescribedMedEntityList) {
+        this.id = id;
+        this.disease = disease;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.expiredAt = expiredAt;
+        this.status = status;
+        this.userEntity = userEntity;
+        this.patientEntity = patientEntity;
+        this.prescribedMedEntityList = prescribedMedEntityList;
+    }
 
-    public PrescriptionEntity() {
+    public PrescriptionEntity(String disease) {
         this.createdAt = new Date(System.currentTimeMillis());
+        this.updatedAt = new Date(System.currentTimeMillis());
+        this.expiredAt = new Date(System.currentTimeMillis());
+        this.status = 0;
     }
 
     public Integer getId() {
