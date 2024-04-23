@@ -72,7 +72,7 @@ public class DoctorHomeActivity extends MainActivity {
         appBtn.setOnClickListener(this);
 
         rootLayout = findViewById(R.id.noti);
-        getToken(6);
+        getToken();
         getAllApps();
     }
 
@@ -87,7 +87,7 @@ public class DoctorHomeActivity extends MainActivity {
     }
 
     public void getAllApps() {
-        api.getAllAppToday(6).enqueue(new Callback<List<AppointmentResponse>>() {
+        api.getAllAppToday(globalValues.getUserId()).enqueue(new Callback<List<AppointmentResponse>>() {
 
             @Override
             public void onResponse(Call<List<AppointmentResponse>> call, Response<List<AppointmentResponse>> response) {

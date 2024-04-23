@@ -114,7 +114,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         globalValues.setFullName(userLoginRespone.getFullName());
     }
     public void returnToHome(Integer role){
-        if(role == 1) {
+        if(role == 0) {
             TransferActivity.transferActivity(this, HomeActivity.class);
         }
         else {
