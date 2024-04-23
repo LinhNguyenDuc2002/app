@@ -14,9 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.medication.R;
 import com.example.medication.activity.DoctorHomeActivity;
 import com.example.medication.activity.HomeActivity;
-import com.example.medication.activity.UserActivity;
+import com.example.medication.quan.activity.UserActivity;
 import com.example.medication.vinhquang.activity.ChatActivity;
-import com.example.medication.vinhquang.activity.MedicationActivity;
 import com.example.medication.vinhquang.activity.NotificationActivity;
 import com.example.medication.activity.NotificationSettingActivity;
 import com.example.medication.util.TransferActivity;
@@ -65,10 +64,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(id == R.id.setupButton)
             TransferActivity.transferActivity(this, NotificationSettingActivity.class);
         else if(id == R.id.homeButton) {
-//            if(globalValues.getRole() == 0)
+            if(globalValues.getRole() == 0)
                 TransferActivity.transferActivity(this, HomeActivity.class);
-//            else
-//                TransferActivity.transferActivity(this, DoctorHomeActivity.class);
+            else
+                TransferActivity.transferActivity(this, DoctorHomeActivity.class);
         }
         else if(id == R.id.userButton)
             TransferActivity.transferActivity(this, UserActivity.class);
