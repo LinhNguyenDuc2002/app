@@ -9,6 +9,7 @@ import com.example.medication.vinhquang.data.MedicationResponse;
 import com.example.medication.vinhquang.data.MessageRequest;
 import com.example.medication.vinhquang.data.NotificationResponse;
 import com.example.medication.vinhquang.data.SearchResponse;
+import com.example.medication.vinhquang.data.UserResponse;
 
 import java.util.List;
 
@@ -36,8 +37,12 @@ public interface ApiService {
     Call<String> update(@Path("id") Integer id);
     @GET("/patient/{id}/search")
     Call<List<SearchResponse>> searchPatient(@Path("id") Integer id, @Query("name") String name);
+    @GET("/patient/search")
+    Call<List<SearchResponse>> searchAllPatient(@Query("name") String name);
     @GET("/doctor/search")
     Call<List<SearchResponse>> searchDoctor(@Query("name") String name);
+    @GET("/manager/search")
+    Call<List<SearchResponse>> searchPatientManager(@Query("name") String name);
     @POST("/appointment/set/{role}")
     Call<String> addApp(@Body AppointmentRequest appointmentRequest, @Path("role") Integer role);
     @PUT("/appointment/confirm/{notiId}")
@@ -47,6 +52,8 @@ public interface ApiService {
     Call<List<AppointmentResponse> >getAllApps(@Path("id") Integer id, @Query("role") Integer role);
     @GET("/appointment/{id}")
     Call<AppointmentResponse> getOneApp(@Path("id") Integer id);
+    @GET("/appointment/today/{id}")
+    Call<List<AppointmentResponse>> getAllAppToday(@Path("id") Integer id);
 
     @GET("/medication/search")
     Call<List<SearchResponse>> searchMed(@Query("name") String name);
@@ -67,4 +74,6 @@ public interface ApiService {
     Call<String> sendMessage(@Body MessageRequest messageRequest);
     @GET("/chat/dialog/{fId}/{sId}")
     Call<Integer> createOrGetDialog(@Path("fId") Integer fId, @Path("sId") Integer sId, @Query("role") Integer role);
+    @GET("/user/{id}")
+    Call<UserResponse> getUserById(@Path("id") Integer id);
 }

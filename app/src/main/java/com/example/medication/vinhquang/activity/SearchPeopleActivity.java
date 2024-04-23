@@ -113,29 +113,55 @@ public class SearchPeopleActivity extends MainActivity {
     }
 
     public void searchPatient() {
-        api.searchPatient(globalValues.getUserId(), searchPeople.getText().toString()).enqueue(new Callback<List<SearchResponse>>() {
-            @Override
-            public void onResponse(Call<List<SearchResponse>> call, Response<List<SearchResponse>> response) {
-                if (response.isSuccessful()) {
-                    data = response.body();
-                    rootLayout.removeAllViews();
+        if(globalValues.getRole() == 1) {
+            api.searchAllPatient(searchPeople.getText().toString()).enqueue(new Callback<List<SearchResponse>>() {
+                @Override
+                public void onResponse(Call<List<SearchResponse>> call, Response<List<SearchResponse>> response) {
+                    if (response.isSuccessful()) {
+                        data = response.body();
+                        rootLayout.removeAllViews();
 
-                    data.forEach(d -> {
-                        render(d);
-                    });
+                        data.forEach(d -> {
+                            render(d);
+                        });
 
-                    resetEditText();
-                } else {
-                    System.out.println("error");
+                        resetEditText();
+                    } else {
+                        System.out.println("error");
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<SearchResponse>> call, Throwable t) {
-                t.printStackTrace();
-                System.err.println("Đã xảy ra lỗi: " + t.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<List<SearchResponse>> call, Throwable t) {
+                    t.printStackTrace();
+                    System.err.println("Đã xảy ra lỗi: " + t.getMessage());
+                }
+            });
+        } else {
+            api.searchPatient(globalValues.getUserId(), searchPeople.getText().toString()).enqueue(new Callback<List<SearchResponse>>() {
+                @Override
+                public void onResponse(Call<List<SearchResponse>> call, Response<List<SearchResponse>> response) {
+                    if (response.isSuccessful()) {
+                        data = response.body();
+                        rootLayout.removeAllViews();
+
+                        data.forEach(d -> {
+                            render(d);
+                        });
+
+                        resetEditText();
+                    } else {
+                        System.out.println("error");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<SearchResponse>> call, Throwable t) {
+                    t.printStackTrace();
+                    System.err.println("Đã xảy ra lỗi: " + t.getMessage());
+                }
+            });
+        }
     }
 
     public void render(SearchResponse s) {

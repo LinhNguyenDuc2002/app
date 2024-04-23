@@ -12,6 +12,7 @@ import com.example.medication.service.ServiceGenerator;
 import com.example.medication.vinhquang.api.ApiService;
 import com.example.medication.vinhquang.data.NotificationFirebase;
 import com.example.medication.vinhquang.data.NotificationResponse;
+import com.example.medication.vinhquang.data.UserResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -26,7 +27,7 @@ import retrofit2.Response;
 public class FirebaseUtil {
     private static final ApiService api = ServiceGenerator.createService(ApiService.class);
     private static GlobalValues globalValues = GlobalValues.getInstance();
-    public static void getToken() {
+    public static void getToken(Integer id) {
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
@@ -39,20 +40,24 @@ public class FirebaseUtil {
                         // Get new FCM registration token
                         String token = task.getResult();
                         globalValues.setToken(token);
+
+                        setTokenToUser(id);
                         Log.d(TAG, token);
                     }
                 });
     }
 
-    public static void setTokenToUser() {
-        globalValues.setUserId(1);
-        globalValues.setRole(0);
+    public static void setTokenToUser(Integer id) {
+        GlobalValues globalValues = GlobalValues.getInstance();
+        globalValues.setUserId(id);
         api.setToken(globalValues.getUserId(), globalValues.getToken()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
                     String data = response.body();
                     System.out.println(data);
+
+                    getUser();
                 } else {
                     System.out.println("error");
                 }
@@ -60,6 +65,29 @@ public class FirebaseUtil {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                t.printStackTrace();
+                System.err.println("Đã xảy ra lỗi: " + t.getMessage());
+            }
+        });
+    }
+
+    public static void getUser() {
+        api.getUserById(globalValues.getUserId()).enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    UserResponse data = response.body();
+                    globalValues.setRole(data.getRole());
+                    globalValues.setFullName(data.getFullName());
+
+                    getListOldNoti();
+                } else {
+                    System.out.println("error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 t.printStackTrace();
                 System.err.println("Đã xảy ra lỗi: " + t.getMessage());
             }
