@@ -72,7 +72,7 @@ public class DoctorHomeActivity extends MainActivity {
         appBtn.setOnClickListener(this);
 
         rootLayout = findViewById(R.id.noti);
-        getToken();
+//        getToken();
         getAllApps();
     }
 

@@ -13,6 +13,7 @@ import com.example.medication.data.NotificationSetting;
 import com.example.medication.service.NotificationSettingService;
 import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.DialogUtil;
+import com.example.medication.vinhquang.util.GlobalValues;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NotificationSettingActivity extends MainActivity implements CompoundButton.OnCheckedChangeListener {
+    GlobalValues globalValues = GlobalValues.getInstance();
     private final NotificationSettingService notificationSettingService = ServiceGenerator.createService(NotificationSettingService.class);
 
     private Button saveButton;
@@ -78,7 +80,7 @@ public class NotificationSettingActivity extends MainActivity implements Compoun
     }
 
     private void loadStatus() {
-        notificationSettingService.getSettingStatus(2).enqueue(new Callback<NotificationSetting>() {
+        notificationSettingService.getSettingStatus(globalValues.getUserId()).enqueue(new Callback<NotificationSetting>() {
             @Override
             public void onResponse(Call<NotificationSetting> call, Response<NotificationSetting> response) {
                 if (response.isSuccessful()) {
@@ -98,7 +100,7 @@ public class NotificationSettingActivity extends MainActivity implements Compoun
     }
 
     private void updateSetting(Map<String, Object> parameters) {
-        notificationSettingService.updateSetting(2, parameters).enqueue(new Callback<NotificationSetting>() {
+        notificationSettingService.updateSetting(globalValues.getUserId(), parameters).enqueue(new Callback<NotificationSetting>() {
             @Override
             public void onResponse(Call<NotificationSetting> call, Response<NotificationSetting> response) {
                 if (response.isSuccessful()) {
