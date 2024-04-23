@@ -1,267 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include layout="@layout/header_activity" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/light_gray">
 
         <LinearLayout
             android:id="@+id/noti"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/light_gray"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/frame3"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="120dp"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/rounded_corner"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/imageView1"-->
-<!--                    android:layout_width="60dp"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_margin="20dp"-->
-<!--                    android:foreground="@drawable/baseline_notifications_24"-->
-<!--                    android:foregroundTint="@color/main_green"-->
-<!--                    android:visibility="visible" />-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    android:layout_marginBottom="20dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView18"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Ông Nguyễn Văn A có lịch uống thuốc lúc 9h"-->
-<!--                        android:textSize="18dp"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView19"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Ngày 02/02/2023, lúc 8h30" />-->
-<!--                </LinearLayout>-->
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:id="@+id/frame4"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="120dp"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/rounded_corner"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/imageView2"-->
-<!--                    android:layout_width="60dp"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_margin="20dp"-->
-<!--                    android:foreground="@drawable/baseline_notifications_24"-->
-<!--                    android:foregroundTint="@color/main_green"-->
-<!--                    android:visibility="visible" />-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    android:layout_marginBottom="20dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView20"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Ông Nguyễn Văn A có lịch uống thuốc lúc 9h"-->
-<!--                        android:textSize="18dp"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView21"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Ngày 02/02/2023, lúc 8h30" />-->
-<!--                </LinearLayout>-->
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:id="@+id/frame5"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="120dp"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/rounded_corner"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/imageView3"-->
-<!--                    android:layout_width="60dp"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_margin="20dp"-->
-<!--                    android:foreground="@drawable/baseline_notifications_24"-->
-<!--                    android:foregroundTint="@color/main_green"-->
-<!--                    android:visibility="visible" />-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    android:layout_marginBottom="20dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView22"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Ông Nguyễn Văn A có lịch uống thuốc lúc 9h"-->
-<!--                        android:textSize="18dp"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView23"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Ngày 02/02/2023, lúc 8h30" />-->
-<!--                </LinearLayout>-->
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:id="@+id/frame6"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="120dp"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/rounded_corner"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/imageView4"-->
-<!--                    android:layout_width="60dp"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_margin="20dp"-->
-<!--                    android:foreground="@drawable/baseline_notifications_24"-->
-<!--                    android:foregroundTint="@color/main_green"-->
-<!--                    android:visibility="visible" />-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    android:layout_marginBottom="20dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView24"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Ông Nguyễn Văn A có lịch uống thuốc lúc 9h"-->
-<!--                        android:textSize="18dp"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView25"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Ngày 02/02/2023, lúc 8h30" />-->
-<!--                </LinearLayout>-->
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:id="@+id/frame7"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="120dp"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/rounded_corner"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/imageView5"-->
-<!--                    android:layout_width="60dp"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_margin="20dp"-->
-<!--                    android:foreground="@drawable/baseline_notifications_24"-->
-<!--                    android:foregroundTint="@color/main_green"-->
-<!--                    android:visibility="visible" />-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_marginRight="20dp"-->
-<!--                    android:layout_marginBottom="20dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView26"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="0dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Ông Nguyễn Văn A có lịch uống thuốc lúc 9h"-->
-<!--                        android:textSize="18dp"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView27"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Ngày 02/02/2023, lúc 8h30" />-->
-<!--                </LinearLayout>-->
-<!--            </LinearLayout>-->
         </LinearLayout>
     </ScrollView>
 
     <include layout="@layout/footer_activity" />
 
-</RelativeLayout>
+</LinearLayout>

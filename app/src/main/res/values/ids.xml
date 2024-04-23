@@ -2,5 +2,10 @@
 <resources>
     <item name="id" type="id"/>
     <item name="status" type="id"/>
+<<<<<<< HEAD
     <item name="header_activity" type="id" />
+=======
+    <item name="name" type="id"/>
+    <item name="des" type="id"/>
+>>>>>>> master
 </resources>

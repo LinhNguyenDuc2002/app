@@ -7,7 +7,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public final class ServiceGenerator {
+<<<<<<< HEAD
     public final static String API_BASE_URL = "http://10.21.46.222:8082";
+=======
+    public final static String API_BASE_URL = "http://10.0.2.2:8082";
+>>>>>>> master
 
     private final static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)

@@ -23,8 +23,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // TODO(developer): Handle FCM messages here.
         super.onMessageReceived(remoteMessage);
-        Intent intent = new Intent("NOTIFICATION");
-        intent.putExtra("message", "Bạn có thông báo mới!!!");
+        String check = remoteMessage.getData().get("check");
+        if(check.equals("noti")) {
+            receivedNoti(remoteMessage);
+        } else if(check.equals("mess")) {
+            receivedMess(remoteMessage);
+        }
+    }
+
+    public void receivedNoti(RemoteMessage remoteMessage) {
+        Intent intent = new Intent("ACTION_SHOW_NOTIFICATION");
+        intent.putExtra("notification", "Bạn có thông báo mới!!!");
         sendBroadcast(intent);
 
         Log.d(TAG, "From: " + remoteMessage.getFrom());
@@ -44,5 +53,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getTitle());
 
         }
+    }
+
+    public void receivedMess(RemoteMessage remoteMessage) {
+        Log.d(TAG, "CHATTTTTTTTTTTTTTTT!!!!!!!!!!");
+        Intent intent = new Intent("ACTION_SHOW_MESSAGE");
+        intent.putExtra("message", "Bạn có tin nhắn mới!!!");
+        sendBroadcast(intent);
     }
 }

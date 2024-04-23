@@ -26,6 +26,7 @@ import com.example.medication.service.DailyStatusService;
 import com.example.medication.service.PrescribedMedicationService;
 import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.TransferActivity;
+import com.example.medication.vinhquang.activity.AppointmentActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import static com.example.medication.vinhquang.util.FirebaseUtil.*;
 
@@ -54,9 +55,6 @@ public class HomeActivity extends MainActivity {
 
         constructor();
         loadMedication();
-        getToken();
-        setTokenToUser();
-        getListOldNoti();
     }
 
     @Override
@@ -78,6 +76,8 @@ public class HomeActivity extends MainActivity {
         prescriptionButton.setOnClickListener(this);
         addMemberButton.setOnClickListener(this);
         addNewMedicationButton.setOnClickListener(this);
+
+        getToken(1);
     }
 
     @Override
@@ -94,9 +94,14 @@ public class HomeActivity extends MainActivity {
             TransferActivity.transferActivity(this, AddMemberActivity.class);
         else if (id == R.id.prescriptionButton)
             TransferActivity.transferActivity(this, PrescriptionActivity.class);
+<<<<<<< HEAD
         else if (id == R.id.add_new_medication)
             TransferActivity.transferActivity(this, NewMedication.class);
 
+=======
+        else if (id == R.id.scheduleButton)
+            TransferActivity.transferActivity(this, AppointmentActivity.class);
+>>>>>>> master
     }
 
     private void loadMedication() {
