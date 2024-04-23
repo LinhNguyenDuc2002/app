@@ -123,7 +123,7 @@ public class SearchDialogActivity extends MainActivity {
     }
 
     public void searchPatient(String name) {
-        api.searchPatient(globalValues.getUserId(), name).enqueue(new Callback<List<SearchResponse>>() {
+        api.searchPatientManager(name).enqueue(new Callback<List<SearchResponse>>() {
             @Override
             public void onResponse(Call<List<SearchResponse>> call, Response<List<SearchResponse>> response) {
                 if (response.isSuccessful()) {

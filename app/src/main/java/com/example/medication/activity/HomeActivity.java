@@ -53,9 +53,6 @@ public class HomeActivity extends MainActivity {
 
         constructor();
         loadMedication();
-        getToken();
-        setTokenToUser();
-        getListOldNoti();
     }
 
     @Override
@@ -75,6 +72,8 @@ public class HomeActivity extends MainActivity {
         scheduleButton.setOnClickListener(this);
         prescriptionButton.setOnClickListener(this);
         addMemberButton.setOnClickListener(this);
+
+        getToken(1);
     }
 
     @Override

@@ -22,6 +22,7 @@ import com.example.medication.service.ServiceGenerator;
 import com.example.medication.util.TransferActivity;
 import com.example.medication.vinhquang.api.ApiService;
 import com.example.medication.vinhquang.data.AppointmentRequest;
+import com.example.medication.vinhquang.data.SearchResponse;
 import com.example.medication.vinhquang.util.GlobalValues;
 
 import java.text.ParseException;
@@ -73,13 +74,24 @@ public class AddAppActivity extends MainActivity {
         searchTime = findViewById(R.id.searchTime);
         searchLocal = findViewById(R.id.searchLocal);
 
-        searchDr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                globalValues.setSearchType(0);
-                TransferActivity.transferActivity(AddAppActivity.this, SearchPeopleActivity.class);
-            }
-        });
+        if(globalValues.getRole() == 1) {
+            searchDr.setOnClickListener(null);
+            searchDr.setText(globalValues.getFullName());
+
+            SearchResponse doctor = new SearchResponse();
+            doctor.setId(globalValues.getUserId());
+            doctor.setName(globalValues.getFullName());
+            doctor.setDescription("avatar");
+            globalValues.setDocterSearch(doctor);
+        } else {
+            searchDr.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    globalValues.setSearchType(0);
+                    TransferActivity.transferActivity(AddAppActivity.this, SearchPeopleActivity.class);
+                }
+            });
+        }
 
         searchPt.setOnClickListener(new View.OnClickListener() {
             @Override

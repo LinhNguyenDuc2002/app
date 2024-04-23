@@ -10,6 +10,7 @@ public class GlobalValues {
     private static GlobalValues instance;
     private String token;
     private Integer userId;
+    private String fullName;
     private Integer role;
     private List<NotificationFirebase> notificationList = new ArrayList<>();
     private Integer searchType;
@@ -85,5 +86,13 @@ public class GlobalValues {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }
