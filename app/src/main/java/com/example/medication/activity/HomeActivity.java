@@ -3,14 +3,18 @@ package com.example.medication.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -32,6 +36,8 @@ import com.example.medication.vinhquang.util.GlobalValues;
 import com.example.medication.vinhquang.util.PatientGlobalValues;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import static com.example.medication.vinhquang.util.FirebaseUtil.*;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
@@ -129,19 +135,49 @@ public class HomeActivity extends MainActivity {
     }
 
     private  void showListPatients(List<PatientRespone> patientResponeList) {
-//        LinearLayout.LayoutParams linearLayout = new LinearLayout.LayoutParams(
-//                80,
-//                LinearLayout.LayoutParams.MATCH_PARENT
-//        );
-//        linearLayout.setMargins(10, 0, 20, 0);
-//        for(PatientRespone patientRespone : patientResponeList) {
-//            LinearLayout patientLayout = new LinearLayout(listPatientLayout.getContext());
-//            patientLayout.setLayoutParams(linearLayout);
-//
-//            patientLayout.addView();
-//
-//
-//        }
+        LinearLayout.LayoutParams linearLayout = new LinearLayout.LayoutParams(
+                80,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+        linearLayout.setMargins(10, 0, 20, 0);
+        for(PatientRespone patientRespone : patientResponeList) {
+            LinearLayout patientLayout = new LinearLayout(listPatientLayout.getContext());
+            patientLayout.setLayoutParams(linearLayout);
+
+            ImageView imageView = new ImageView(patientLayout.getContext());
+            // Thiết lập các thuộc tính cho ImageView
+            LinearLayout.LayoutParams imagelayoutParams = new LinearLayout.LayoutParams(
+                    45,
+                    45
+            );
+            imagelayoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.TOP | Gravity.CENTER_VERTICAL;
+            imageView.setLayoutParams(imagelayoutParams);
+            imageView.setBackgroundResource(R.drawable.oval);
+            imageView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(patientLayout.getContext(), R.color.green_color)));
+            imageView.setClickable(true);
+            imageView.setContentDescription(getString(R.string.app_name));
+            imageView.setScrollbarFadingEnabled(false);
+            imageView.setVerticalScrollBarEnabled(false);
+            imageView.setVerticalScrollBarEnabled(true);
+            imageView.setImageResource(R.drawable.round_person_24);
+
+            TextView textView = new TextView(patientLayout.getContext());
+            LinearLayout.LayoutParams textlayoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            );
+            textlayoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM | Gravity.CENTER_VERTICAL;
+            textlayoutParams.setMargins(0, 5,0 , 0);
+            textView.setLayoutParams(textlayoutParams);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            textView.setGravity(Gravity.CENTER);
+            textView.setSingleLine(true);
+            textView.setText(patientRespone.getFullName());
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+
+            patientLayout.addView(imageView);
+            patientLayout.addView(textView);
+        }
     }
 
     private void loadMedication() {
