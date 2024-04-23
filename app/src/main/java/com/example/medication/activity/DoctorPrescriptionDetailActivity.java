@@ -1,16 +1,18 @@
 package com.example.medication.activity;
 
+
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import com.example.medication.R;
 import com.example.medication.activity.base.MainActivity;
-import com.example.medication.data.DTO.PatientDto;
 import com.example.medication.data.DTO.PrescriptionDto;
-import com.example.medication.service.PatientService;
 import com.example.medication.service.PrescriptionService;
 import com.example.medication.service.ServiceGenerator;
 
@@ -22,61 +24,64 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PrescriptionActivity extends MainActivity {
+public class DoctorPrescriptionDetailActivity extends MainActivity {
+    private LinearLayout buttonAdd;
+    private View dataView;
 
-    private final PatientService patientService = ServiceGenerator.createService(PatientService.class);
+    private TextView patientName,patientDob,patientPhone;
     private final PrescriptionService prescriptionService = ServiceGenerator.createService(PrescriptionService.class);
-    private TextView patientName, patientDob, patientPhone;
     private LinearLayout prescriptionListLayout;
+    private Integer id;
+    private String n,d,p;
 
     private String formatDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         return sdf.format(date);
     }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_prescription);
-
-        constructor();
-        loadInforPatient(1);
-        loadAllPrescriptions(1);
-    }
-
-    public void constructor() {
-        super.constructor();
+        Intent intent = getIntent();
+        id = intent.getIntExtra("patient_id",-1);
+        n = intent.getStringExtra("patient_name");
+        d = intent.getStringExtra("patient_dob");
+        p = intent.getStringExtra("patient_phone");
         patientName = findViewById(R.id.text_name);
-        patientDob = findViewById(R.id.text_dob);
         patientPhone = findViewById(R.id.text_phone);
+        patientDob = findViewById(R.id.text_dob);
+
+
+        patientName.setText(n);
+        patientDob.setText(d);
+        patientPhone.setText(p);
+
         prescriptionListLayout = findViewById(R.id.prescription_list);
-    }
 
-    private void loadInforPatient(int patientId) {
-        patientService.findById(patientId).enqueue(new Callback<PatientDto>() {
+        buttonAdd = findViewById(R.id.button_add_doctor);
+        Button addButton = new Button(this);
+        addButton.setText("Thêm đơn");
+        addButton.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
+
+        buttonAdd.addView(addButton);
+        constructor();
+        loadAllPrescriptions(id);
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<PatientDto> call, Response<PatientDto> response) {
-                if (response.isSuccessful()) {
-                    PatientDto data = response.body();
-                    showInforPatient(data);
-                } else {
-                    System.out.println("error");
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<PatientDto> call, Throwable t) {
-                t.printStackTrace();
-                System.err.println("Đã xảy ra lỗi: " + t.getMessage());
+            public void onClick(View v) {
+                // Thực hiện hành động khi nút Add được nhấn
+                // Ví dụ: Chuyển đến một activity để thêm đơn thuốc mới
+                Intent intent = new Intent(DoctorPrescriptionDetailActivity.this, AddPrescriptionActivity.class);
+                intent.putExtra("patient_id",id);
+                intent.putExtra("patient_name", n);
+                intent.putExtra("patient_dob", d);
+                intent.putExtra("patient_phone", p);
+                startActivity(intent);
             }
         });
-    }
-
-    private void showInforPatient(PatientDto data) {
-        patientName.setText("Họ và tên: " + data.getFullName());
-        patientDob.setText("Ngày sinh: " + formatDate(data.getDateOfBirth()));
-        patientPhone.setText("SĐT: " + data.getPhoneNumber());
     }
 
     private void loadAllPrescriptions(Integer patientId) {
@@ -105,6 +110,7 @@ public class PrescriptionActivity extends MainActivity {
         for (PrescriptionDto prescription : data) {
             addPrescriptionView(prescription);
         }
+
     }
 
     private void addPrescriptionView(PrescriptionDto prescription) {
@@ -124,7 +130,7 @@ public class PrescriptionActivity extends MainActivity {
             public void onClick(View v) {
                 // Perform action when prescriptionView is clicked
                 // For example, you can start a new activity
-                Intent intent = new Intent(PrescriptionActivity.this, PrescriptionDetailActivity.class);
+                Intent intent = new Intent(DoctorPrescriptionDetailActivity.this, PrescriptionDetailActivity.class);
                 // You can also pass data to the next activity if needed
                 intent.putExtra("prescription_id", prescription.getId());
                 intent.putExtra("prescription_patient", prescription.getPatientName());
@@ -150,5 +156,4 @@ public class PrescriptionActivity extends MainActivity {
         // Add prescriptionView to prescriptionListLayout
         prescriptionListLayout.addView(prescriptionView);
     }
-
 }

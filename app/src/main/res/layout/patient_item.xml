@@ -1,0 +1,49 @@
+<!-- prescription_item.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/prescription_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_background"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_marginTop="50dp"
+    android:layout_marginBottom="50dp"
+    android:padding="20dp">
+        <ImageView
+            android:id="@+id/image_patient"
+            android:layout_width="94dp"
+            android:layout_height="81dp"
+            android:contentDescription="Patient Image"
+            android:src="@drawable/patient"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/sId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Sid: 01"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: Đỗ Tiến Sĩ"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/text_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Phone: 0914824032"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+</LinearLayout>

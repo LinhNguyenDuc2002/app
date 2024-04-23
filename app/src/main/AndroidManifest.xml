@@ -66,7 +66,13 @@
         </activity>
         <activity
             android:name=".activity.DoctorHomeActivity"
-            android:exported="true" />
+            android:exported="true" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".activity.DetailNotificationActivity"
             android:exported="true" />
@@ -124,6 +130,18 @@
         <activity
             android:name=".activity.SyncPrescriptionActivity"
             android:exported="true" />
+        <activity
+            android:name=".activity.NewMedication"
+            android:exported="true" />
+        <activity
+            android:name=".activity.UpdateTimeMedication"
+            android:exported="true" />
+        <activity android:name=".activity.DoctorPrescriptionActivity"
+            android:exported="true"/>
+        <activity android:name=".activity.DoctorPrescriptionDetailActivity"
+            android:exported="true"/>
+        <activity android:name=".activity.AddPrescriptionActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

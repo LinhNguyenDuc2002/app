@@ -37,14 +37,14 @@
             android:layout_marginStart="16dp">
 
             <TextView
-                android:id="@+id/text_name"
+                android:id="@+id/doctor_patient_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: Đỗ Tiến Sĩ"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/text_dob"
+                android:id="@+id/doctor_patient_dob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -52,7 +52,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/text_phone"
+                android:id="@+id/doctor_patient_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -65,8 +65,8 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="413dp"
-        android:layout_height="460dp"
+        android:layout_width="411dp"
+        android:layout_height="459dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/footer_layout"
@@ -77,7 +77,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
-            android:id="@+id/prescription_list"
+            android:id="@+id/doctor_patient_prescription_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -96,19 +96,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/button_add_doctor"
-        android:layout_width="53dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/footer_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView"
-        app:layout_constraintVertical_bias="0.571"
-        android:orientation="horizontal">
-
-    </LinearLayout>
-
     <include
         android:id="@+id/footer_layout"
         layout="@layout/footer_activity"
@@ -118,6 +105,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

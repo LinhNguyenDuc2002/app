@@ -107,6 +107,7 @@ public class NotificationSettingActivity extends MainActivity implements Compoun
                 } else {
                     System.out.println("error");
                 }
+
             }
 
             @Override
